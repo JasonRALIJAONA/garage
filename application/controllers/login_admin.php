@@ -32,16 +32,16 @@ class login_admin extends CI_Controller {
             if ($admin_id !== NULL) {
                 // Rediriger vers une autre page après la connexion réussie
                 $this->session->set_userdata('admin_id', $admin_id);
-                redirect('dashboard');
+                redirect('service/list');
             }else{
                 // Afficher un message d'erreur si les informations d'identification sont incorrectes
                 $data['erreur'] = "Nom d'utilisateur ou mot de passe incorrect.";
-                $this->load->view('login_form', $data);
+                $this->load->view('login', $data);
             }
         } else {
             // Afficher un message d'erreur si les champs sont vides
             $data['erreur'] = "Veuillez remplir tous les champs.";
-            $this->load->view('login_form', $data);
+            $this->load->view('login', $data);
         }
     }
 }

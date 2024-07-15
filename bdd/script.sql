@@ -148,9 +148,14 @@ DELIMITER ;
 
 
 
+
 -- Table pour les administrateurs
 CREATE TABLE g_admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pseudo VARCHAR(50) NOT NULL UNIQUE,
     mdp VARCHAR(255) NOT NULL
 );
+
+-- Insertion des administrateurs
+INSERT INTO g_admins (pseudo, mdp) VALUES
+('admin', sha1('admin'));
