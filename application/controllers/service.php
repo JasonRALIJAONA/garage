@@ -34,6 +34,8 @@ class service extends CI_Controller{
             'prix' => $this->input->post('prix')
         );
 
+        $id = $this->input->post('id');
+
         $error = [];
 
         if ($info['duree'] < 0) {
@@ -46,13 +48,34 @@ class service extends CI_Controller{
 
         if (!empty($error)) {
             $data['error'] = $error;
-            $data['content'] = "service";
-            $this->load->view('templates/template', $data);
+            $data['contents'] = "insert-services";
+            $data['update'] = true;
+            $info['id'] = $id;
+            $data['service'] = $info;
+            $this->load->view('templates/template-admin', $data);
+            return;
+        }
+
+        if ($id != null) {
+            $this->service_model->update($id, $info);
+            redirect('service/list');
             return;
         }
 
         $this->service_model->create($info);
         redirect('service/list');
+    }
+
+    public function form($id = null){
+        $data['contents'] = 'insert-services';
+        $data['update'] = false;
+        if ($id == null) {
+            $this->load->view('templates/template-admin', $data);
+            return;
+        }
+        $data['update'] = true;
+        $data['service'] = $this->service_model->get_by_id($id);
+        $this->load->view('templates/template-admin', $data);
     }
 
     public function delete($id){

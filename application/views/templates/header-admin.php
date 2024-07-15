@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Auto Mecano - Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="<?php echo base_url('assets/vendors/feather/feather.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/vendors/ti-icons/css/themify-icons.css') ?>">
