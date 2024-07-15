@@ -78,12 +78,12 @@ BEGIN
     DECLARE available_slot_id INT;
 
     -- Obtenir la duree du service
-    SELECT duree INTO duration FROM Services WHERE id = service_id;
+    SELECT duree INTO duration FROM g_services WHERE id = service_id;
     SET date_fin = DATE_ADD(date_debut, INTERVAL TIME_TO_SEC(duration) SECOND);
 
     -- Trouver un slot disponible
     SELECT id INTO available_slot_id
-    FROM Slots
+    FROM g_slots
     WHERE id NOT IN (
         SELECT id_slot
         FROM g_reservations
@@ -118,12 +118,12 @@ BEGIN
     
     -- Verifier si le client existe dejà
     SELECT id INTO client_id
-    FROM Clients
+    FROM g_clients
     WHERE numero_voiture = car_number AND id_typeVoiture = car_type_id;
     
     -- Si le client n'existe pas, l'inscrire automatiquement
     IF client_id IS NULL THEN
-        INSERT INTO Clients (numero_voiture, id_typeVoiture) VALUES (car_number, car_type_id);
+        INSERT INTO g_clients (numero_voiture, id_typeVoiture) VALUES (car_number, car_type_id);
         SELECT LAST_INSERT_ID() INTO client_id;
     END IF;
     
