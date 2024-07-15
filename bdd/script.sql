@@ -3,19 +3,19 @@ CREATE DATABASE garage_db;
 USE garage_db;
 
 -- Table pour les slots de garage
-CREATE TABLE Slots (
+CREATE TABLE g_slots (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(1) NOT NULL UNIQUE
 );
 
 -- Insertion des slots
-INSERT INTO Slots (nom) VALUES 
+INSERT INTO g_slots (nom) VALUES 
 ('A'),
 ('B'),
 ('C');
 
 -- Table pour les types de service
-CREATE TABLE Services (
+CREATE TABLE g_services (
     id INT AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(50) NOT NULL,
     duree TIME NOT NULL,
@@ -23,26 +23,26 @@ CREATE TABLE Services (
 );
 
 -- Insertion des types de service
-INSERT INTO Services (type, duree, prix) VALUES
+INSERT INTO services (type, duree, prix) VALUES
 ('Réparation simple', '01:00:00', 150000),
 ('Réparation standard', '02:00:00', 250000),
 ('Réparation complexe', '08:00:00', 800000),
 ('Entretien', '02:30:00', 300000);
 
 -- Table pour les types de voiture
-CREATE TABLE TypeVoiture (
+CREATE TABLE g_typevoiture (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- Insertion des types de voiture
-INSERT INTO TypeVoiture (nom) VALUES
+INSERT INTO g_typevoiture (nom) VALUES
 ('légère'),
 ('4x4'),
 ('Utilitaire');
 
 -- Table pour les clients
-CREATE TABLE Clients (
+CREATE TABLE g_clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     numero_voiture VARCHAR(20) UNIQUE NOT NULL,
     id_typeVoiture INT NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE Clients (
 );
 
 -- Table pour les réservations
-CREATE TABLE Reservations (
+CREATE TABLE g_reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_slot INT NOT NULL,
     id_service INT NOT NULL,
@@ -131,7 +131,7 @@ DELIMITER ;
 
 
 -- Table pour les administrateurs
-CREATE TABLE Admins (
+CREATE TABLE g_admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
