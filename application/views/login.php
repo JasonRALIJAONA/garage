@@ -9,18 +9,23 @@
 <body>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<?php echo form_open('login_admin/process_login'); ?>
 			<h1>Administrateur</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
+
+			<?php if (isset($erreur)) { ?>
+				<p style="color: red;"><?php echo $erreur; ?></p>
+			<?php } ?>
+
 			<span>Veuillez remplir les champs</span>
-			<input type="text" placeholder="Veuillez entrer votre pseudonyme" />
-			<input type="password" placeholder="Veuillez entrer votre Mot de passe" />
-			<button>Se connecter</button>
-		</form>
+			<input type="text" placeholder="Veuillez entrer votre pseudonyme" name="nom" />
+			<input type="password" placeholder="Veuillez entrer votre Mot de passe" name="mdp" />
+			<button type="submit">Se connecter</button>
+		<?php echo form_close(); ?>
 	</div>
 	
 	<div class="form-container sign-in-container">
