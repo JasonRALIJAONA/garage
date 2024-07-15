@@ -6,43 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="<?php echo $description; ?>" />
     <meta name="keywords" content="<?php echo $keywords; ?>" />
-    <!-- <link href="/css/styles.css" rel="stylesheet" type="text/css" media="screen" /> -->
-    <link href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/shop-homepage.css'); ?>" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/open-iconic-bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css')?>">
+    
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/magnific-popup.css')?>">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/aos.css')?>">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/ionicons.min.css')?>">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-datepicker.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.timepicker.css')?>">
+
+    
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/flaticon.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/icomoon.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Sakila</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+            <a class="navbar-brand" href="index.html">Auto<span>Mecano</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+        
+            <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <?php echo anchor('/customer/list', 'Customers', 'class=nav-link'); ?>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">A propos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+                <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="car.html" class="nav-link">Cars</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
             </div>
-        </div>
-    </nav>
-
-    <!-- <div id="header">
-        <a href="/"><img src="/css/img/logo.png" alt="logo" /></a>
-        <ul id="navigation">
-            <li><?php echo anchor(base_url(), 'Accueil'); ?></li>
-            <li><?php echo anchor('services', 'Services'); ?></li>
-            <li><?php echo anchor('about', 'A propos'); ?></li>
-            <li><?php echo anchor('contact', 'Contact'); ?></li>
-        </ul>
-    </div>end header -->
+            </div>
+        </nav>
