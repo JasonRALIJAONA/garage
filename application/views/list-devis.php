@@ -2,10 +2,7 @@
     <div class="content-wrapper">
         <div class="card">
                         <div class="card-body">
-                        <h4 class="card-title">Hoverable Table</h4>
-                        <p class="card-description">
-                            Add class <code>.table-hover</code>
-                        </p>
+                        <h4 class="card-title">Liste des devis</h4>
                         <div class="table-responsive">
                             <table class="table table-hover">
                             <thead>
@@ -52,4 +49,16 @@
                         </div>
                         </div>
                     </div>
+                    <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Date de paiement</h4>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Date de paiement</label>
+                      <input type="date" class="form-control" placeholder="date de paiement">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                  </form>
+                </div>
+              </div>
     </div>
