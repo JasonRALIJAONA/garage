@@ -19,24 +19,29 @@
     				<div class="row no-gutters">
 	  					<div class="col-md-4 d-flex align-items-center">
 	  						<form action="#" class="request-form ftco-animate bg-primary">
-		          		<h2>Penez votre rendez-vous</h2>
-			    				<div class="d-flex">
-			    					<div class="form-group mr-2">
-			                <label for="" class="label">Date et heure debut</label>
-			                <input type="datetime" class="form-control" id="book_pick_date" placeholder="Date">
-			              </div>
-			              
-		              </div>
-		              <div class="form-group">
-		                <label for="" class="label">Type de service</label>
-                    <select class="form-control" name="" id="">
-                      <option value="">Reparation simple</option>
+		          		<h2>Prenez votre rendez-vous</h2>
+
+                <?php if (isset($error_message)): ?>
+                <p style="color: red;"><?php echo $error_message; ?></p>
+                <?php endif; ?>
+                <form method="post" action="<?php echo site_url('login/prendre_rendez_vous'); ?>">
+                    <label for="service_id">Type de service:</label>
+                    <div class="form-group mr-2">
+                    <select name="service_id" id="service_id">
+                        <?php foreach ($services as $service): ?>
+                            <option value="<?php echo $service->id; ?>"><?php echo $service->type; ?></option>
+                        <?php endforeach; ?>
                     </select>
-		              </div>
-			            <div class="form-group">
+                    </div><br>
+                    <div class="form-group mr-2">
+                    <label for="date_debut">Date et heure de début:</label>
+                    <input type="datetime-local" name="date_debut" id="date_debut" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
 			              <input type="submit" value="Reserver" class="btn btn-secondary py-3 px-4">
 			            </div>
-			    			</form>
+                </form>
 	  					</div>
 	  					<div class="col-md-8 d-flex align-items-center">
 	  						<div class="services-wrap rounded-right w-100">
