@@ -4,7 +4,7 @@
                         <div class="card-body">
                         <h4 class="card-title">Liste des services</h4>
                         <p class="card-description">
-                            <a href=""><i class="mdi mdi-plus-circle-outline"> Insertion</a></i>
+                            <a style="color:green;" href=""><i class="mdi mdi-plus-circle-outline"> Insertion</a></i>
                         </p>
                         <div class="table-responsive">
                             <table class="table table-hover">
@@ -24,8 +24,8 @@
                                 <td>Maisatra</td>
                                 <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
                                 <td><label class="badge badge-danger">Pending</label></td>
-                                <td><a href=""><i class="mdi mdi-border-color"></i></a></td>
-                                <td><a href=""><i class="mdi mdi-delete"></a></td>
+                                <td><h3><a href=""><i class="mdi mdi-border-color"></i></a></h3></td>
+                                <td><h3><a style="color: red;" href=""><i class="mdi mdi-delete"></a></h3></td>
                                 </tr>
                                 <tr>
                                 <td>Messsy</td>
