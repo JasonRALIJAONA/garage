@@ -35,7 +35,7 @@ images
                     </div>
                     <br>
                     <?php if (isset($error_message)): ?>
-                <p style="color: red;"><?php echo $error_message; ?></p>
+                    <div class="alert alert-danger" role="alert"><?php echo $error_message; ?></div>
                 <?php endif; ?>
                     <div class="form-group">
 			                <input type="submit" value="Reserver" class="btn btn-secondary py-3 px-4">
