@@ -48,7 +48,10 @@ class service extends CI_Controller{
 
         if (!empty($error)) {
             $data['error'] = $error;
-            $data['content'] = "insert-services";
+            $data['contents'] = "insert-services";
+            $data['update'] = true;
+            $info['id'] = $id;
+            $data['service'] = $info;
             $this->load->view('templates/template-admin', $data);
             return;
         }
