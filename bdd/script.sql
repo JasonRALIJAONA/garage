@@ -55,53 +55,63 @@ CREATE TABLE g_reservations (
     id_slot INT NOT NULL,
     id_service INT NOT NULL,
     id_client INT NOT NULL,
-    start_time DATETIME NOT NULL,
-    end_time DATETIME NOT NULL,
-    date_paiement 
+    date_debut DATETIME NOT NULL,
+    date_fin DATETIME NOT NULL,
+    date_paiement DATETIME,
     FOREIGN KEY (id_slot) REFERENCES g_slots(id),
     FOREIGN KEY (id_service) REFERENCES g_services(id),
-    FOREIGN KEY (id_client) REFERENCES g_clients(id)
+    FOREIGN KEY (id_client) REFERENCES g_clients(id),
+    CHECK (date_paiement IS NULL OR date_paiement >= date_debut)
 );
 
--- Verification des creneaux disponibles et prise de rendez-vous
+
 DELIMITER //
 CREATE PROCEDURE PrendreRendezVous(
     IN client_id INT,
     IN service_id INT,
-    IN start_time DATETIME
+    IN date_debut DATETIME
 )
 BEGIN
     DECLARE duration TIME;
-    DECLARE end_time DATETIME;
+    DECLARE date_fin DATETIME;
     DECLARE available_slot_id INT;
+    DECLARE no_slot_available BOOLEAN DEFAULT FALSE;
 
-    -- Obtenir la duree du service
-    SELECT duree INTO duration FROM Services WHERE id = service_id;
-    SET end_time = DATE_ADD(start_time, INTERVAL TIME_TO_SEC(duration) SECOND);
+    -- Obtenir la durée du service
+    SELECT duree INTO duration FROM g_services WHERE id = service_id;
+    SET date_fin = DATE_ADD(date_debut, INTERVAL TIME_TO_SEC(duration) SECOND);
 
     -- Trouver un slot disponible
     SELECT id INTO available_slot_id
-    FROM Slots
+    FROM g_slots
     WHERE id NOT IN (
         SELECT id_slot
         FROM g_reservations
-        WHERE (start_time < end_time AND end_time > start_time)
+        WHERE (date_debut < date_fin AND date_fin > date_debut)
     )
     LIMIT 1;
 
-    -- Si aucun slot n'est disponible, renvoyer une erreur
+    -- Si aucun slot n'est disponible, signaler une erreur
     IF available_slot_id IS NULL THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Aucun creneau disponible pour ce creneau horaire';
+        SET no_slot_available = TRUE;
     ELSE
-        -- Inserer la reservation
-        INSERT INTO g_reservations (id_slot, id_service, id_client, start_time, end_time)
-        VALUES (available_slot_id, service_id, client_id, start_time, end_time);
+        -- Insérer la réservation
+        INSERT INTO g_reservations (id_slot, id_service, id_client, date_debut, date_fin)
+        VALUES (available_slot_id, service_id, client_id, date_debut, date_fin);
+    END IF;
+
+    -- Retourner l'ID du slot ou signaler qu'aucun slot n'est disponible
+    IF no_slot_available THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Aucun créneau disponible pour ce créneau horaire';
+    ELSE
+        SELECT available_slot_id AS slot_id;
     END IF;
 END //
 DELIMITER ;
 
--- Procedure pour le login/inscription client
+
+
 DELIMITER //
 CREATE PROCEDURE ClientLogin(
     IN car_number VARCHAR(20),
@@ -110,30 +120,37 @@ CREATE PROCEDURE ClientLogin(
 BEGIN
     DECLARE client_id INT;
     DECLARE car_type_id INT;
-    
+
     -- Obtenir l'ID du type de voiture
     SELECT id INTO car_type_id FROM g_typevoiture WHERE nom = car_type_name;
-    
-    -- Verifier si le client existe dejà
+
+    -- Vérifier si le type de voiture existe
+    IF car_type_id IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Type de voiture non trouvé';
+    END IF;
+
+    -- Vérifier si le client existe déjà
     SELECT id INTO client_id
-    FROM Clients
+    FROM g_clients
     WHERE numero_voiture = car_number AND id_typeVoiture = car_type_id;
-    
+
     -- Si le client n'existe pas, l'inscrire automatiquement
     IF client_id IS NULL THEN
-        INSERT INTO Clients (numero_voiture, id_typeVoiture) VALUES (car_number, car_type_id);
+        INSERT INTO g_clients (numero_voiture, id_typeVoiture) VALUES (car_number, car_type_id);
         SELECT LAST_INSERT_ID() INTO client_id;
     END IF;
-    
+
     -- Retourner l'ID du client
     SELECT client_id AS id;
 END //
 DELIMITER ;
 
 
+
 -- Table pour les administrateurs
 CREATE TABLE g_admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+    pseudo VARCHAR(50) NOT NULL UNIQUE,
+    mdp VARCHAR(255) NOT NULL
 );
