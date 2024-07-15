@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/open-iconic-bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css')?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css')?>">
     
     <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css') ?>">
