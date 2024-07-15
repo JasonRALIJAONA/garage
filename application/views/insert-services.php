@@ -6,11 +6,11 @@
                     <div class="alert alert-danger" role="alert">
                       <?php foreach($error as $e){?>
                         <p><?php echo $e; ?></p>
-                      <?php }
-                    } ?>
+                      <?php } ?>
                     </div>
+                  <?php } ?>
                   <h4 class="card-title">Insertion services</h4>
-                  <?php echo form_open('service/create'); ?>
+                  <?php echo form_open('service/create', array('class'=>'forms-sample')); ?>
                     <div class="form-group">
                       <label for="exampleInputUsername1">Type</label>
                       <input type="text" class="form-control" placeholder="Type" name="type" <?php if($update){echo ("value = '".$service['type']."'");} ?>>
