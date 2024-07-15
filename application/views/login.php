@@ -22,8 +22,8 @@
 			<?php } ?>
 
 			<span>Veuillez remplir les champs</span>
-			<input type="text" placeholder="Veuillez entrer votre pseudonyme" name="nom" />
-			<input type="password" placeholder="Veuillez entrer votre Mot de passe" name="mdp" />
+			<input type="text" placeholder="Veuillez entrer votre pseudonyme" name="nom" value="admin"/>
+			<input type="password" placeholder="Veuillez entrer votre Mot de passe" name="mdp" value="admin"/>
 			<button type="submit">Se connecter</button>
 		<?php echo form_close(); ?>
 	</div>
