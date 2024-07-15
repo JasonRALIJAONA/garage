@@ -262,7 +262,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?php echo base_url()?>">
             <span class="menu-title">Deconnexion</span>  
           </a>
           </li>
