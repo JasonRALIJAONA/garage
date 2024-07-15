@@ -57,6 +57,7 @@ CREATE TABLE g_reservations (
     id_client INT NOT NULL,
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
+    date_paiement 
     FOREIGN KEY (id_slot) REFERENCES g_slots(id),
     FOREIGN KEY (id_service) REFERENCES g_services(id),
     FOREIGN KEY (id_client) REFERENCES g_clients(id)

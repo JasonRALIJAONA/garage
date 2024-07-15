@@ -6,7 +6,7 @@ class client extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Client_model');
+        $this->load->model('client_model');
     }
 
     public function login($car_number, $car_type_name) {
