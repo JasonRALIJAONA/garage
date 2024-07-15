@@ -18,20 +18,18 @@
     			<div class="col-md-12	featured-top">
     				<div class="row no-gutters">
 	  					<div class="col-md-4 d-flex align-items-center">
-	  						<form action="#" class="request-form ftco-animate bg-primary">
-		          		<h2>Prenez votre rendez-vous</h2>
-
+                <h2>Prenez votre rendez-vous</h2>
                 <?php if (isset($error_message)): ?>
                 <p style="color: red;"><?php echo $error_message; ?></p>
                 <?php endif; ?>
-                <form method="post" action="<?php echo site_url('login/prendre_rendez_vous'); ?>">
+                <form method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
                     <label for="service_id">Type de service:</label>
                     <div class="form-group mr-2">
                     <select name="service_id" id="service_id">
-                        <?php foreach ($services as $service): ?>
-                            <option value="<?php echo $service->id; ?>"><?php echo $service->type; ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                      <?php foreach ($services as $service): ?>
+                          <option value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?></option>
+                      <?php endforeach; ?>
+                  </select>
                     </div><br>
                     <div class="form-group mr-2">
                     <label for="date_debut">Date et heure de début:</label>
