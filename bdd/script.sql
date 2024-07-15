@@ -65,7 +65,6 @@ CREATE TABLE g_reservations (
 );
 
 
--- Verification des creneaux disponibles et prise de rendez-vous
 DELIMITER //
 CREATE PROCEDURE PrendreRendezVous(
     IN client_id INT,
@@ -76,8 +75,9 @@ BEGIN
     DECLARE duration TIME;
     DECLARE date_fin DATETIME;
     DECLARE available_slot_id INT;
+    DECLARE no_slot_available BOOLEAN DEFAULT FALSE;
 
-    -- Obtenir la duree du service
+    -- Obtenir la durée du service
     SELECT duree INTO duration FROM g_services WHERE id = service_id;
     SET date_fin = DATE_ADD(date_debut, INTERVAL TIME_TO_SEC(duration) SECOND);
 
@@ -91,14 +91,21 @@ BEGIN
     )
     LIMIT 1;
 
-    -- Si aucun slot n'est disponible, renvoyer une erreur
+    -- Si aucun slot n'est disponible, signaler une erreur
     IF available_slot_id IS NULL THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Aucun creneau disponible pour ce creneau horaire';
+        SET no_slot_available = TRUE;
     ELSE
-        -- Inserer la reservation
+        -- Insérer la réservation
         INSERT INTO g_reservations (id_slot, id_service, id_client, date_debut, date_fin)
         VALUES (available_slot_id, service_id, client_id, date_debut, date_fin);
+    END IF;
+
+    -- Retourner l'ID du slot ou signaler qu'aucun slot n'est disponible
+    IF no_slot_available THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Aucun créneau disponible pour ce créneau horaire';
+    ELSE
+        SELECT available_slot_id AS slot_id;
     END IF;
 END //
 DELIMITER ;
