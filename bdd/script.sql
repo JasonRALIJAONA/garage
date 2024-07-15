@@ -1,4 +1,4 @@
--- Création de la base de données
+-- Creation de la base de donnees
 CREATE DATABASE garage_db;
 USE garage_db;
 
@@ -23,10 +23,10 @@ CREATE TABLE g_services (
 );
 
 -- Insertion des types de service
-INSERT INTO services (type, duree, prix) VALUES
-('Réparation simple', '01:00:00', 150000),
-('Réparation standard', '02:00:00', 250000),
-('Réparation complexe', '08:00:00', 800000),
+INSERT INTO g_services (type, duree, prix) VALUES
+('Reparation simple', '01:00:00', 150000),
+('Reparation standard', '02:00:00', 250000),
+('Reparation complexe', '08:00:00', 800000),
 ('Entretien', '02:30:00', 300000);
 
 -- Table pour les types de voiture
@@ -37,7 +37,7 @@ CREATE TABLE g_typevoiture (
 
 -- Insertion des types de voiture
 INSERT INTO g_typevoiture (nom) VALUES
-('légère'),
+('legere'),
 ('4x4'),
 ('Utilitaire');
 
@@ -49,7 +49,7 @@ CREATE TABLE g_clients (
     FOREIGN KEY (id_typeVoiture) REFERENCES g_typevoiture(id)
 );
 
--- Table pour les réservations
+-- Table pour les reservations
 CREATE TABLE g_reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_slot INT NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE g_reservations (
     FOREIGN KEY (id_client) REFERENCES g_clients(id)
 );
 
--- Vérification des créneaux disponibles et prise de rendez-vous
+-- Verification des creneaux disponibles et prise de rendez-vous
 DELIMITER //
 CREATE PROCEDURE PrendreRendezVous(
     IN client_id INT,
@@ -74,7 +74,7 @@ BEGIN
     DECLARE end_time DATETIME;
     DECLARE available_slot_id INT;
 
-    -- Obtenir la durée du service
+    -- Obtenir la duree du service
     SELECT duree INTO duration FROM Services WHERE id = service_id;
     SET end_time = DATE_ADD(start_time, INTERVAL TIME_TO_SEC(duration) SECOND);
 
@@ -93,14 +93,14 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Aucun creneau disponible pour ce creneau horaire';
     ELSE
-        -- Insérer la réservation
+        -- Inserer la reservation
         INSERT INTO g_reservations (id_slot, id_service, id_client, start_time, end_time)
         VALUES (available_slot_id, service_id, client_id, start_time, end_time);
     END IF;
 END //
 DELIMITER ;
 
--- Procédure pour le login/inscription client
+-- Procedure pour le login/inscription client
 DELIMITER //
 CREATE PROCEDURE ClientLogin(
     IN car_number VARCHAR(20),
@@ -113,7 +113,7 @@ BEGIN
     -- Obtenir l'ID du type de voiture
     SELECT id INTO car_type_id FROM g_typevoiture WHERE nom = car_type_name;
     
-    -- Vérifier si le client existe déjà
+    -- Verifier si le client existe dejà
     SELECT id INTO client_id
     FROM Clients
     WHERE numero_voiture = car_number AND id_typeVoiture = car_type_id;
