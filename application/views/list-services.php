@@ -24,8 +24,8 @@
                                 <td>Maisatra</td>
                                 <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
                                 <td><label class="badge badge-danger">Pending</label></td>
-                                <td><i class="mdi mdi-border-color"></i></td>
-                                <td><i class="mdi mdi-delete"></td>
+                                <td><a href=""><i class="mdi mdi-border-color"></i></a></td>
+                                <td><a href=""><i class="mdi mdi-delete"></a></td>
                                 </tr>
                                 <tr>
                                 <td>Messsy</td>
