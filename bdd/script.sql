@@ -55,13 +55,13 @@ CREATE TABLE g_reservations (
     id_slot INT NOT NULL,
     id_service INT NOT NULL,
     id_client INT NOT NULL,
-    start_time DATETIME NOT NULL,
-    end_time DATETIME NOT NULL,
-    payment_date DATETIME,
+    date_debut DATETIME NOT NULL,
+    date_fin DATETIME NOT NULL,
+    date_paiement DATETIME,
     FOREIGN KEY (id_slot) REFERENCES g_slots(id),
     FOREIGN KEY (id_service) REFERENCES g_services(id),
     FOREIGN KEY (id_client) REFERENCES g_clients(id),
-    CHECK (payment_date IS NULL OR payment_date >= start_time)
+    CHECK (date_paiement IS NULL OR date_paiement >= date_debut)
 );
 
 
@@ -70,16 +70,16 @@ DELIMITER //
 CREATE PROCEDURE PrendreRendezVous(
     IN client_id INT,
     IN service_id INT,
-    IN start_time DATETIME
+    IN date_debut DATETIME
 )
 BEGIN
     DECLARE duration TIME;
-    DECLARE end_time DATETIME;
+    DECLARE date_fin DATETIME;
     DECLARE available_slot_id INT;
 
     -- Obtenir la duree du service
     SELECT duree INTO duration FROM Services WHERE id = service_id;
-    SET end_time = DATE_ADD(start_time, INTERVAL TIME_TO_SEC(duration) SECOND);
+    SET date_fin = DATE_ADD(date_debut, INTERVAL TIME_TO_SEC(duration) SECOND);
 
     -- Trouver un slot disponible
     SELECT id INTO available_slot_id
@@ -87,7 +87,7 @@ BEGIN
     WHERE id NOT IN (
         SELECT id_slot
         FROM g_reservations
-        WHERE (start_time < end_time AND end_time > start_time)
+        WHERE (date_debut < date_fin AND date_fin > date_debut)
     )
     LIMIT 1;
 
@@ -97,8 +97,8 @@ BEGIN
         SET MESSAGE_TEXT = 'Aucun creneau disponible pour ce creneau horaire';
     ELSE
         -- Inserer la reservation
-        INSERT INTO g_reservations (id_slot, id_service, id_client, start_time, end_time)
-        VALUES (available_slot_id, service_id, client_id, start_time, end_time);
+        INSERT INTO g_reservations (id_slot, id_service, id_client, date_debut, date_fin)
+        VALUES (available_slot_id, service_id, client_id, date_debut, date_fin);
     END IF;
 END //
 DELIMITER ;
@@ -136,6 +136,6 @@ DELIMITER ;
 -- Table pour les administrateurs
 CREATE TABLE g_admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+    pseudo VARCHAR(50) NOT NULL UNIQUE,
+    mdp VARCHAR(255) NOT NULL
 );
