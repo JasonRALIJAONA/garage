@@ -4,8 +4,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class reservation_model extends CI_Model{
     public function __construct() {
         $this->load->database();
+        $this->load->model('service_model');
     }
 
+    public function get_reservation_by_id($reservation_id) {
+        $this->db->select('r.*, s.type AS service_type, s.prix, c.numero_voiture');
+        $this->db->from('g_reservations r');
+        $this->db->join('g_clients c', 'r.id_client = c.id');
+        $this->db->join('g_services s', 'r.id_service = s.id');
+        $this->db->where('r.id', $reservation_id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function get_all_services() {
+        $query = $this->db->get('g_services');
+        return $query->result_array();
+    }
+    
     public function get_all(){
         $query = $this->db->get('g_reservations');
         return $query->result_array();

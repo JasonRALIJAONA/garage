@@ -10,6 +10,7 @@ class reservation extends CI_Controller {
 
         $this->load->helper('form');
         $this->load->library('form_validation');
+        require_once APPPATH . 'libraries/fpdf185/fpdf.php';
     }
 
     public function process_reservation() {
@@ -27,8 +28,8 @@ class reservation extends CI_Controller {
                 // Afficher un message d'erreur
                 $data['error_message'] = $reservation_id;
             } else {
-                // Rediriger ou afficher un message de succès
-                redirect('reservation/success'); // Redirection vers une page de succès par exemple
+                $this->generate_pdf($reservation_id);
+                return;
             }
         } else {
             // Afficher un message d'erreur si les champs sont vides
@@ -41,6 +42,71 @@ class reservation extends CI_Controller {
 
         $this->load->view('templates/template', $data);
     }
+
+    private function generate_pdf($reservation_id) {
+        $reservation = $this->reservation_model->get_reservation_by_id($reservation_id);
+    
+        // Initialiser FPDF
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        
+        // Titre
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->SetTextColor(0, 51, 102); // Couleur du texte
+        $pdf->Cell(0, 10, utf8_decode('Devis Réservation'), 0, 1, 'C');
+        $pdf->Ln(10);
+    
+        // Informations de la réservation
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->SetFillColor(230, 230, 230); // Couleur de fond
+        $pdf->SetDrawColor(50, 50, 100); // Couleur des bordures
+        
+        $pdf->Cell(40, 10, utf8_decode('Reservation ID :'), 1, 0, 'L', true);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(0, 10, $reservation->id, 1, 1);
+        
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(40, 10, utf8_decode('Numéro Client :'), 1, 0, 'L', true);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(0, 10, utf8_decode($reservation->numero_voiture), 1, 1); // Utiliser numero_client au lieu de id_client
+    
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(40, 10, utf8_decode('Service :'), 1, 0, 'L', true);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(0, 10, utf8_decode($reservation->service_type), 1, 1);
+    
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(40, 10, utf8_decode('Date début :'), 1, 0, 'L', true);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(0, 10, $reservation->date_debut, 1, 1);
+    
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(40, 10, utf8_decode('Date fin :'), 1, 0, 'L', true);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(0, 10, $reservation->date_fin, 1, 1);
+    
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(40, 10, utf8_decode('Prix :'), 1, 0, 'L', true);
+        $pdf->SetFont('Arial', '', 12);
+        $pdf->Cell(0, 10, $reservation->prix, 1, 1);
+    
+        // Ajouter des bordures et des couleurs pour un meilleur design
+        $pdf->SetFillColor(200, 220, 255);
+        $pdf->SetDrawColor(50, 50, 100);
+    
+        // Sauvegarder le PDF dans le répertoire uploads
+        $uploadDir = FCPATH . 'uploads';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        $pdfFilePath = $uploadDir . '/reservation_' . $reservation->id . '.pdf';
+        $pdf->Output($pdfFilePath, 'F');
+    
+        // Afficher le PDF
+        $pdf->Output();
+    }
+    
+    
     
 }
 

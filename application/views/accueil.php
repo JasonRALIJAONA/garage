@@ -1,4 +1,4 @@
-<div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap ftco-degree-bg" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
@@ -11,31 +11,32 @@
         </div>
       </div>
     </div>
-
+images
      <section class="ftco-section ftco-no-pt bg-light">
     	<div class="container">
     		<div class="row no-gutters">
     			<div class="col-md-12	featured-top">
     				<div class="row no-gutters">
 	  					<div class="col-md-4 d-flex align-items-center">
-                <h2>Prenez votre rendez-vous</h2>
-                <?php if (isset($error_message)): ?>
-                <p style="color: red;"><?php echo $error_message; ?></p>
-                <?php endif; ?>
-                <form method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
-                    <label for="service_id">Type de service:</label>
+                
+                <form class="request-form ftco-animate bg-primary" method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
+                  <h2>Prenez votre rendez-vous</h2>  
                     <div class="form-group mr-2">
-                    <select name="service_id" id="service_id">
+                    <label for="service_id" class="label">Type de service:</label>
+                    <select name="service_id" id="service_id" class="form-control">
                       <?php foreach ($services as $service): ?>
-                          <option value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?></option>
+                          <option style="color: black;" value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?></option>
                       <?php endforeach; ?>
-                  </select>
+                    </select>
                     </div><br>
                     <div class="form-group mr-2">
-                      <label for="date_debut">Date et heure de début:</label>
-                      <input type="datetime-local" name="date_debut" id="date_debut" required>
+                      <label for="date_debut" class="label">Date et heure de début:</label>
+                      <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
                     </div>
                     <br>
+                    <?php if (isset($error_message)): ?>
+                <p style="color: red;"><?php echo $error_message; ?></p>
+                <?php endif; ?>
                     <div class="form-group">
 			                <input type="submit" value="Reserver" class="btn btn-secondary py-3 px-4">
 			              </div>
@@ -92,7 +93,7 @@
     				<div class="carousel-car owl-carousel">
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-1.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo base_url('') ?>assets/images/car-1.jpg);">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
@@ -106,7 +107,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-2.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo base_url('') ?>assets/images/car-2.jpg);">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
@@ -120,7 +121,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-3.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo base_url('') ?>assets/images/car-3.jpg);">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
@@ -134,7 +135,7 @@
     					</div>
     					<div class="item">
     						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url(images/car-4.jpg);">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo base_url('') ?>assets/images/car-4.jpg);">
 		    					</div>
 		    					<div class="text">
 		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
@@ -155,7 +156,7 @@
     <section class="ftco-section ftco-about">
 			<div class="container">
 				<div class="row no-gutters">
-					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url('<?php echo base_url('assets/images/about.jpg') ?>');">
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
@@ -221,7 +222,7 @@
 			</div>
 		</section>
 
-		<section class="ftco-section ftco-intro" style="background-image: url(images/bg_3.jpg);">
+		<section class="ftco-section ftco-intro" style="background-image: url('<?php echo base_url('assets/images/bg_3.jpg')?>');">
 			<div class="overlay"></div>
 			<div class="container">
 				<div class="row justify-content-end">
@@ -247,7 +248,7 @@
             <div class="carousel-testimony owl-carousel ftco-owl">
               <div class="item">
                 <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-2" style="background-image: url(<?php echo base_url('') ?>assets/images/person_1.jpg)">
                   </div>
                   <div class="text pt-4">
                     <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -258,7 +259,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url(images/person_2.jpg)">
+                  <div class="user-img mb-2" style="background-image: url(<?php echo base_url('') ?>assets/images/person_2.jpg)">
                   </div>
                   <div class="text pt-4">
                     <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -269,7 +270,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url(images/person_3.jpg)">
+                  <div class="user-img mb-2" style="background-image: url(<?php echo base_url('') ?>assets/images/person_3.jpg)">
                   </div>
                   <div class="text pt-4">
                     <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -280,7 +281,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-2" style="background-image: url(<?php echo base_url('') ?>assets/images/person_1.jpg)">
                   </div>
                   <div class="text pt-4">
                     <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
@@ -291,7 +292,7 @@
               </div>
               <div class="item">
                 <div class="testimony-wrap rounded text-center py-4 pb-5">
-                  <div class="user-img mb-2" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img mb-2" style="background-image: url(<?php echo base_url('') ?>assets/images/person_1.jpg)">
                   </div>
                   <div class="text pt-4">
                     <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
