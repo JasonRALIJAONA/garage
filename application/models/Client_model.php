@@ -21,7 +21,7 @@ class client_model extends CI_Model {
     }
 
     public function get_types_voiture() {
-        $query = $this->db->get('TypeVoiture');
+        $query = $this->db->get('g_typevoiture');
         return $query->result_array();
     }
     
