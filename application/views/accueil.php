@@ -18,9 +18,7 @@ images
     			<div class="col-md-12	featured-top">
     				<div class="row no-gutters">
 	  					<div class="col-md-4 d-flex align-items-center">
-                <?php if (isset($error_message)): ?>
-                <p style="color: red;"><?php echo $error_message; ?></p>
-                <?php endif; ?>
+                
                 <form class="request-form ftco-animate bg-primary" method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
                   <h2>Prenez votre rendez-vous</h2>  
                     <div class="form-group mr-2">
@@ -36,6 +34,9 @@ images
                       <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
                     </div>
                     <br>
+                    <?php if (isset($error_message)): ?>
+                <p style="color: red;"><?php echo $error_message; ?></p>
+                <?php endif; ?>
                     <div class="form-group">
 			                <input type="submit" value="Reserver" class="btn btn-secondary py-3 px-4">
 			              </div>
