@@ -103,7 +103,8 @@ BEGIN
 END //
 DELIMITER ;
 
--- Procedure pour le login/inscription client
+
+
 DELIMITER //
 CREATE PROCEDURE ClientLogin(
     IN car_number VARCHAR(20),
@@ -112,25 +113,32 @@ CREATE PROCEDURE ClientLogin(
 BEGIN
     DECLARE client_id INT;
     DECLARE car_type_id INT;
-    
+
     -- Obtenir l'ID du type de voiture
     SELECT id INTO car_type_id FROM g_typevoiture WHERE nom = car_type_name;
-    
-    -- Verifier si le client existe dejà
+
+    -- Vérifier si le type de voiture existe
+    IF car_type_id IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Type de voiture non trouvé';
+    END IF;
+
+    -- Vérifier si le client existe déjà
     SELECT id INTO client_id
     FROM g_clients
     WHERE numero_voiture = car_number AND id_typeVoiture = car_type_id;
-    
+
     -- Si le client n'existe pas, l'inscrire automatiquement
     IF client_id IS NULL THEN
         INSERT INTO g_clients (numero_voiture, id_typeVoiture) VALUES (car_number, car_type_id);
         SELECT LAST_INSERT_ID() INTO client_id;
     END IF;
-    
+
     -- Retourner l'ID du client
     SELECT client_id AS id;
 END //
 DELIMITER ;
+
 
 
 -- Table pour les administrateurs

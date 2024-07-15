@@ -16,7 +16,7 @@ class login extends CI_Controller {
         $data['types_voiture'] = $this->client_model->get_types_voiture();
     
         // Charger la vue du formulaire de login avec les données
-        $this->load->view('login_form', $data);
+        $this->load->view('login', $data);
     }
     
 
@@ -35,13 +35,15 @@ class login extends CI_Controller {
             if ($client_id !== NULL) {
                 // Rediriger vers une autre page après la connexion réussie
                 $this->session->set_userdata('client_id', $client_id);
-                redirect('dashboard'); // Remplacez 'dashboard' par votre URL de destination
+                $data['contents'] = 'accueil';
+                $this->load->view('templates/template', $data);
+
             }
         } else {
             // Afficher un message d'erreur si les champs sont vides
             $data['error_message'] = "Veuillez remplir tous les champs.";
             $data['types_voiture'] = $this->client_model->get_types_voiture();
-            $this->load->view('login_form', $data);
+            $this->load->view('login', $data);
         }
     }
 }
