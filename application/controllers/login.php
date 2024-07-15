@@ -6,17 +6,14 @@ class login extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // Chargez le modèle nécessaire
-        $this->load->model('Client_model');
+        $this->load->model('client_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
     }
 
     public function index() {
-        // Charger le modèle nécessaire
-        $this->load->model('Client_model');
-    
         // Récupérer la liste des types de voiture depuis le modèle
-        $data['types_voiture'] = $this->Client_model->get_types_voiture();
+        $data['types_voiture'] = $this->client_model->get_types_voiture();
     
         // Charger la vue du formulaire de login avec les données
         $this->load->view('login_form', $data);
@@ -33,7 +30,7 @@ class login extends CI_Controller {
         // Vérifier si les champs requis sont remplis
         if (!empty($car_number) && !empty($car_type_name)) {
             // Appeler la méthode du modèle pour vérifier et inscrire le client si nécessaire
-            $client_id = $this->Client_model->login($car_number, $car_type_name);
+            $client_id = $this->client_model->login($car_number, $car_type_name);
 
             if ($client_id !== NULL) {
                 // Rediriger vers une autre page après la connexion réussie
@@ -43,7 +40,7 @@ class login extends CI_Controller {
         } else {
             // Afficher un message d'erreur si les champs sont vides
             $data['error_message'] = "Veuillez remplir tous les champs.";
-            $data['types_voiture'] = $this->Client_model->get_types_voiture();
+            $data['types_voiture'] = $this->client_model->get_types_voiture();
             $this->load->view('login_form', $data);
         }
     }
