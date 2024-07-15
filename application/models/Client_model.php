@@ -10,16 +10,19 @@ class client_model extends CI_Model {
     public function prendre_rendez_vous($client_id, $service_id, $date_debut) {
         // Appeler la procédure stockée
         $query = $this->db->query("CALL PrendreRendezVous(?, ?, ?)", array($client_id, $service_id, $date_debut));
-
+    
         // Vérifier si une erreur a été retournée
         if ($query === FALSE) {
             $error = $this->db->error();
             return $error['message'];
         } else {
-            $result = $query->row();
-            return $result->slot_id;
+            // Aucun résultat direct à récupérer comme avec une requête SQL normale
+            // La procédure stockée manipule directement les données dans la base de données
+            // Vous pouvez simplement retourner un message de succès ou d'échec
+            return "Rendez-vous pris avec succès !"; 
         }
     }
+    
 
     public function login($car_number, $car_type_name) {
         // Appeler la procédure stockée
@@ -35,6 +38,13 @@ class client_model extends CI_Model {
             }
         } else {
             $result = $query->row();
+            $query->free_result(); 
+            
+            // Assurez-vous de libérer tous les jeux de résultats restants (s'il y en a)
+            while ($this->db->conn_id->more_results() && $this->db->conn_id->next_result()) {
+                $this->db->conn_id->store_result();
+            }
+
             return $result->id;
         }
     }
