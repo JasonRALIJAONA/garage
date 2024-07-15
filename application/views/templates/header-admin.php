@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') ?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/vendors/ti-icons/css/themify-icons.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/js/select.dataTables.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css') ?>">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/vertical-layout-light/style.css')?>">
