@@ -8,42 +8,26 @@
                             <thead>
                                 <tr>
                                 <th>id</th>
-                                <th>Type</th>
+                                <th>Numero voiture</th>
+                                <!-- service_type -->
+                                <th>Type de service</th>
+                                <th>Date Debut</th>
+                                <th>Date Fin</th>
                                 <th>Prix</th>
-                                <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <td>1</td>
-                                <td>Maisatra</td>
-                                <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                <td><label class="badge badge-danger">Pending</label></td>
-                                </tr>
-                                <tr>
-                                <td>Messsy</td>
-                                <td>Flash</td>
-                                <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                                <td><label class="badge badge-warning">In progress</label></td>
-                                </tr>
-                                <tr>
-                                <td>John</td>
-                                <td>Premier</td>
-                                <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                                <td><label class="badge badge-info">Fixed</label></td>
-                                </tr>
-                                <tr>
-                                <td>Peter</td>
-                                <td>After effects</td>
-                                <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                                <td><label class="badge badge-success">Completed</label></td>
-                                </tr>
-                                <tr>
-                                <td>Dave</td>
-                                <td>53275535</td>
-                                <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                                <td><label class="badge badge-warning">In progress</label></td>
-                                </tr>
+                                <?php foreach($devis as $dev){?>
+                                    <tr>
+                                        <td><?php echo $dev['id'];?></td>
+                                        <td><?php echo $dev['numero_voiture'];?></td>
+                                        <td><?php echo $dev['service_type'];?></td>
+                                        <td><?php echo $dev['date_debut'];?></td>
+                                        <td><?php echo $dev['date_fin'];?></td>
+                                        <td><?php echo $dev['prix'];?></td>
+                                        <td><h3><a href=<?php echo "form/".$dev['id'];?>><i class="mdi mdi-border-color"></i></a></h3></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                             </table>
                         </div>
