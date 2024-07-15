@@ -46,7 +46,7 @@ CREATE TABLE g_clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
     numero_voiture VARCHAR(20) UNIQUE NOT NULL,
     id_typeVoiture INT NOT NULL,
-    FOREIGN KEY (id_typeVoiture) REFERENCES TypeVoiture(id)
+    FOREIGN KEY (id_typeVoiture) REFERENCES g_typevoiture(id)
 );
 
 -- Table pour les réservations
@@ -57,9 +57,9 @@ CREATE TABLE g_reservations (
     id_client INT NOT NULL,
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
-    FOREIGN KEY (id_slot) REFERENCES Slots(id),
-    FOREIGN KEY (id_service) REFERENCES Services(id),
-    FOREIGN KEY (id_client) REFERENCES Clients(id)
+    FOREIGN KEY (id_slot) REFERENCES g_slots(id),
+    FOREIGN KEY (id_service) REFERENCES g_services(id),
+    FOREIGN KEY (id_client) REFERENCES g_clients(id)
 );
 
 -- Vérification des créneaux disponibles et prise de rendez-vous
@@ -83,7 +83,7 @@ BEGIN
     FROM Slots
     WHERE id NOT IN (
         SELECT id_slot
-        FROM Reservations
+        FROM g_reservations
         WHERE (start_time < end_time AND end_time > start_time)
     )
     LIMIT 1;
@@ -91,10 +91,10 @@ BEGIN
     -- Si aucun slot n'est disponible, renvoyer une erreur
     IF available_slot_id IS NULL THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Aucun créneau disponible pour ce créneau horaire';
+        SET MESSAGE_TEXT = 'Aucun creneau disponible pour ce creneau horaire';
     ELSE
         -- Insérer la réservation
-        INSERT INTO Reservations (id_slot, id_service, id_client, start_time, end_time)
+        INSERT INTO g_reservations (id_slot, id_service, id_client, start_time, end_time)
         VALUES (available_slot_id, service_id, client_id, start_time, end_time);
     END IF;
 END //
@@ -111,7 +111,7 @@ BEGIN
     DECLARE car_type_id INT;
     
     -- Obtenir l'ID du type de voiture
-    SELECT id INTO car_type_id FROM TypeVoiture WHERE nom = car_type_name;
+    SELECT id INTO car_type_id FROM g_typevoiture WHERE nom = car_type_name;
     
     -- Vérifier si le client existe déjà
     SELECT id INTO client_id
