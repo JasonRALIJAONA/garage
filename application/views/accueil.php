@@ -31,8 +31,8 @@ images
                     </div><br>
                     <div class="form-group mr-2">
                       <label for="date_debut" class="label">Date et heure de début:</label>
-                      <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
-                    </div>
+                      <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" value="<?php echo date('Y-m-d\TH:i', strtotime($dateref)); ?>" required>
+                  </div>
                     <br>
                     <?php if (isset($error_message)): ?>
                     <div class="alert alert-danger" role="alert"><?php echo $error_message; ?></div>
