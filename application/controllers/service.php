@@ -13,9 +13,9 @@ class service extends CI_Controller{
         $data=array();
 
         $data['services']=$this->service_model->get_all();
-        $data['contents'] = 'list-service';
+        $data['contents'] = 'list-services';
 
-        $this->load->view('templates/template', $data);
+        $this->load->view('templates/template-admin', $data);
     }
 
     public function view($id){

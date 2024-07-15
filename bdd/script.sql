@@ -64,8 +64,6 @@ CREATE TABLE g_reservations (
     CHECK (date_paiement IS NULL OR date_paiement >= date_debut)
 );
 
-
-DELIMITER //
 CREATE PROCEDURE ClientLogin(
     IN car_number VARCHAR(20),
     IN car_type_name VARCHAR(50)
@@ -80,7 +78,7 @@ BEGIN
     -- Vérifier si le type de voiture existe
     IF car_type_id IS NULL THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Type de voiture non trouvé';
+        SET MESSAGE_TEXT = 'Type de voiture non trouve';
     END IF;
 
     -- Vérifier si le client existe déjà
@@ -100,7 +98,6 @@ END //
 DELIMITER ;
 
 
-
 -- Table pour les administrateurs
 CREATE TABLE g_admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -108,4 +105,6 @@ CREATE TABLE g_admins (
     mdp VARCHAR(255) NOT NULL
 );
 
-
+-- Insertion des administrateurs
+INSERT INTO g_admins (pseudo, mdp) VALUES
+('admin', sha1('admin'));
