@@ -103,7 +103,7 @@ BEGIN
     -- Retourner l'ID du slot ou signaler qu'aucun slot n'est disponible
     IF no_slot_available THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Aucun créneau disponible pour ce créneau horaire';
+        SET MESSAGE_TEXT = 'Aucun creneau disponible pour ce creneau horaire';
     ELSE
         SELECT available_slot_id AS slot_id;
     END IF;
@@ -127,7 +127,7 @@ BEGIN
     -- Vérifier si le type de voiture existe
     IF car_type_id IS NULL THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Type de voiture non trouvé';
+        SET MESSAGE_TEXT = 'Type de voiture non trouve';
     END IF;
 
     -- Vérifier si le client existe déjà
