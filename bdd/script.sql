@@ -64,6 +64,8 @@ CREATE TABLE g_reservations (
     CHECK (date_paiement IS NULL OR date_paiement >= date_debut)
 );
 
+
+DELIMITER //
 CREATE PROCEDURE ClientLogin(
     IN car_number VARCHAR(20),
     IN car_type_name VARCHAR(50)
