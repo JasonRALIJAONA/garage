@@ -58,6 +58,26 @@ class reservation_model extends CI_Model{
         $date_fin_obj = clone $date_debut_obj;
         $date_fin_obj->add(new DateInterval($duration_formatted));
     
+        // Heures d'ouverture du garage
+        $heure_ouverture = '08:00:00';
+        $heure_fermeture = '18:00:00';
+    
+        // Vérifier si la réservation commence en dehors des heures d'ouverture
+        if ($date_debut_obj->format('H:i:s') < $heure_ouverture || $date_debut_obj->format('H:i:s') >= $heure_fermeture) {
+            return "Les réservations doivent commencer entre 08:00 et 18:00.";
+        }
+    
+        // Vérifier si la réservation dépasse l'heure de fermeture
+        if ($date_fin_obj->format('H:i:s') > $heure_fermeture) {
+            // Calculer le temps restant après 18h
+            $time_remaining = $date_fin_obj->getTimestamp() - (clone $date_debut_obj)->setTime(18, 0, 0)->getTimestamp();
+            
+            // Reprendre le travail le lendemain à 8h
+            $date_fin_obj = new DateTime($date_debut_obj->format('Y-m-d') . ' 08:00:00');
+            $date_fin_obj->modify('+1 day');
+            $date_fin_obj->add(new DateInterval('PT' . $time_remaining . 'S'));
+        }
+    
         // Vérifier la disponibilité du créneau
         $available_slot_id = $this->find_available_slot($date_debut_obj->format('Y-m-d H:i:s'), $date_fin_obj->format('Y-m-d H:i:s'));
     
@@ -80,19 +100,6 @@ class reservation_model extends CI_Model{
     }
     
     private function find_available_slot($date_debut, $date_fin) {
-        // Convertir les dates en objets DateTime pour la manipulation
-        $date_debut_obj = new DateTime($date_debut);
-        $date_fin_obj = new DateTime($date_fin);
-    
-        // Heures d'ouverture du garage
-        $heure_ouverture = '08:00:00';
-        $heure_fermeture = '18:00:00';
-    
-        // Vérifier si le créneau de réservation est dans les heures d'ouverture
-        if ($date_debut_obj->format('H:i:s') < $heure_ouverture || $date_fin_obj->format('H:i:s') > $heure_fermeture) {
-            return null; // Créneau en dehors des heures d'ouverture
-        }
-    
         // Requête pour trouver un slot disponible
         $this->db->select('id');
         $this->db->from('g_slots');
@@ -110,6 +117,7 @@ class reservation_model extends CI_Model{
             return null;
         }
     }
+    
     
 }
 ?>
