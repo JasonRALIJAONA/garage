@@ -225,6 +225,12 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
+              <a class="nav-link" href="<?php echo base_url('dashboard')?>">
+              <i class="mdi mdi-view-dashboard menu-icon"></i>
+              <span class="menu-title">Dashboard</span>  
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('service/list') ?>">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Services</span>
@@ -239,18 +245,18 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href=<?php echo base_url("devis/list") ?>>Listes</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Date de paiement</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('configuration')?>">
+            <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
             <span class="menu-title">Date réference</span>  
           </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="icon-bar-graph menu-icon"></i>
+              <i class="mdi mdi-calendar-blank menu-icon"></i>
               <span class="menu-title">Rendez-vous</span>
               <i class="menu-arrow"></i>
             </a>
@@ -262,6 +268,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('data/clear') ?>">
+            <i class="mdi mdi-delete-forever menu-icon"></i>
             <span class="menu-title">Clear database</span>  
           </a>
           </li>
@@ -271,12 +278,14 @@
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?php echo base_url('dashboard/slot')?>">
+            <i class="mdi mdi-car menu-icon"></i>
             <span class="menu-title">Slots</span>  
           </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url()?>">
+            <i class="mdi mdi-power menu-icon"></i>
             <span class="menu-title">Deconnexion</span>  
           </a>
           </li>

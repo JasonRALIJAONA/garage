@@ -36,9 +36,7 @@ class login extends CI_Controller {
                 if ($client_id !== NULL) {
                     // Rediriger vers une autre page après la connexion réussie
                     $this->session->set_userdata('client_id', $client_id);
-                    $reference_date = $this->get_reference_date();
                     $data['contents'] = 'accueil';
-                    $data['dateref'] = $reference_date;
                     $data['services'] = $this->service_model->get_all();
                     $this->load->view('templates/template', $data);
                     return; // Sortie de la méthode après chargement de la vue
@@ -60,20 +58,5 @@ class login extends CI_Controller {
         $this->load->view('login', $data);
     }
     
-    
-
-    public function get_reference_date() {
-        $this->db->select('config_value');
-        $this->db->from('configurations');
-        $this->db->where('config_key', 'reference_date');
-        $query = $this->db->get();
-    
-        if ($query->num_rows() > 0) {
-            $row = $query->row();
-            return $row->config_value;
-        } else {
-            return null; // ou une valeur par défaut
-        }
-    }
 }
 ?>
