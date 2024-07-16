@@ -20,7 +20,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/vertical-layout-light/style.css')?>">
   <!-- endinject -->
-  <link href="<?php echo base_url('assets/css/main.min.css') ?>" rel="stylesheet" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/main.min.css')?>">
   <!-- jQuery -->
   <script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>
   <!-- FullCalendar JS -->
