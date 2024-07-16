@@ -21,11 +21,12 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/css/vertical-layout-light/style.css')?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/calendrier.css') ?>">
   <!-- endinject -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/css/main.min.css') ?>">
   <!-- jQuery -->
   <script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- FullCalendar JS -->
-  <script src="<?php echo base_url('assets/js/main.min.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/index.global.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/index.global.min.js') ?>"></script>
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
@@ -274,6 +275,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('import') ?>">
+            <i class="mdi mdi-file-import menu-icon"></i>
             <span class="menu-title">Importer</span>  
           </a>
           </li>

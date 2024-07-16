@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Graphique circulaire
@@ -51,12 +51,10 @@
             var barCtx = document.getElementById('barChart').getContext('2d');
             var barLabels = [];
             var montantPayeData = [];
-            var montantNonPayeData = [];
 
             <?php foreach ($stats_by_type as $stat) { ?>
                 barLabels.push('<?php echo $stat['type_voiture']; ?>');
                 montantPayeData.push(<?php echo $stat['montant_paye']; ?>);
-                montantNonPayeData.push(<?php echo $stat['montant_non_paye']; ?>);
             <?php } ?>
 
             var barData = {
@@ -66,11 +64,6 @@
                         label: 'Montant Payé',
                         backgroundColor: '#4caf50',
                         data: montantPayeData
-                    },
-                    {
-                        label: 'Montant Non Payé',
-                        backgroundColor: '#f44336',
-                        data: montantNonPayeData
                     }
                 ]
             };
@@ -85,6 +78,7 @@
                             stacked: true
                         },
                         y: {
+                            min: 0,
                             stacked: true
                         }
                     }

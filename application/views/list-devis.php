@@ -15,6 +15,7 @@
                                 <th>Date Fin</th>
                                 <th>Date Payement</th>
                                 <th>Prix</th>
+                                <th>Insertion</th>
                                 </tr>
                             </thead>
                             <tbody>
