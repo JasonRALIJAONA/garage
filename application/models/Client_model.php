@@ -7,6 +7,11 @@ class client_model extends CI_Model {
         $this->load->database();
     }
 
+    public function get_all() {
+        $query = $this->db->get('g_clients');
+        return $query->result();
+    }
+
     public function prendre_rendez_vous($client_id, $service_id, $date_debut) {
         // Appeler la procédure stockée
         $query = $this->db->query("CALL PrendreRendezVous(?, ?, ?)", array($client_id, $service_id, $date_debut));

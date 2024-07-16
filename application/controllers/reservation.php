@@ -6,6 +6,8 @@ class reservation extends CI_Controller {
         parent::__construct();
         // Chargez le modèle nécessaire
         $this->load->model('client_model');
+        $this->load->model('service_model');
+
         $this->load->model('reservation_model');
 
         $this->load->helper('form');
@@ -19,6 +21,9 @@ class reservation extends CI_Controller {
 
         // Préparer les données pour la vue
         // $data['title'] = 'Calendrier des Rendez-vous';
+        
+        $data['clients'] = $this->client_model->get_all();
+        $data['services'] = $this->service_model->get_all();
         
         $data['contents'] = 'calendrier';
         $data['reservations'] = $reservations;
@@ -134,7 +139,43 @@ class reservation extends CI_Controller {
     
         echo json_encode($events);
     }
+
+    public function add_rdv() {
+        $client_id = $this->input->post('client');
+        $service_id = $this->input->post('service');
+        $date_debut = $this->input->post('date_debut');
+
+        // Calculer la date de fin en fonction de la durée du service
+        $service = $this->service_model->get_by_id($service_id);
+        $duration = $service['duree']; // Durée du service au format '01:00:00'
+        
+        // Convertir la durée au format attendu par DateInterval (PnDTnHnMnS)
+        $duration_formatted = 'PT' . substr($duration, 0, 2) . 'H' . substr($duration, 3, 2) . 'M' . substr($duration, 6, 2) . 'S';
+        
+        $date_debut_obj = new DateTime($date_debut);
+        $date_fin_obj = clone $date_debut_obj;
+        $date_fin_obj->add(new DateInterval($duration_formatted));
+
+        // Vérifier la disponibilité du créneau
+        $available_slot_id = $this->find_available_slot($date_debut_obj->format('Y-m-d H:i:s'), $date_fin_obj->format('Y-m-d H:i:s'));
     
+        if ($available_slot_id === null) {
+            echo json_encode(['error' => "Aucun créneau disponible pour ce créneau horaire."]);
+            return;
+        }
+
+        // Effectuer la réservation
+        $reservation_data = array(
+            'id_slot' => $available_slot_id,
+            'id_service' => $service_id,
+            'id_client' => $client_id,
+            'date_debut' => $date_debut_obj->format('Y-m-d H:i:s'),
+            'date_fin' => $date_fin_obj->format('Y-m-d H:i:s')
+        );
+    
+        $this->db->insert('g_reservations', $reservation_data);
+        echo json_encode(['success' => true]);
+    }
     
 }
 
