@@ -1,6 +1,6 @@
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="card">
+        <div class="card" style="background-color: #384c5057;">
             <div class="card-body">
             <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                 <div id="calendar"></div>
