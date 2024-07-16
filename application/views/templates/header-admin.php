@@ -20,13 +20,16 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/vertical-layout-light/style.css')?>">
   <link rel="stylesheet" href="<?php echo base_url('assets/css/calendrier.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/main.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/main.css') ?>">
+
   <!-- endinject -->
   <!-- jQuery -->
   <script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- FullCalendar JS -->
-  <script src="<?php echo base_url('assets/js/index.global.js') ?>"></script>
-  <script src="<?php echo base_url('assets/js/index.global.min.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/main.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/main.min.js') ?>"></script>
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
