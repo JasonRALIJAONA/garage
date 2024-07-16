@@ -13,6 +13,7 @@
                                 <th>Type de service</th>
                                 <th>Date Debut</th>
                                 <th>Date Fin</th>
+                                <th>Date Payement</th>
                                 <th>Prix</th>
                                 </tr>
                             </thead>
@@ -24,6 +25,7 @@
                                         <td><?php echo $dev['service_type'];?></td>
                                         <td><?php echo $dev['date_debut'];?></td>
                                         <td><?php echo $dev['date_fin'];?></td>
+                                        <td><?php if($dev['date_paiement'] == null){echo "Pas encore definis";}else{echo $dev['date_paiement'];}?></td>
                                         <td><?php echo $dev['prix'];?></td>
                                         <td><h3><a href=<?php echo "form/".$dev['id'];?>><i class="mdi mdi-border-color"></i></a></h3></td>
                                     </tr>
