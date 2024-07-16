@@ -57,6 +57,10 @@ class import_model extends CI_Model{
             }
             fclose($handle);
         }
+        // filter the csvdata
+        $serialized = array_map('serialize', $csvData);
+        $unique = array_unique($serialized);
+        $csvData = array_map('unserialize', $unique);    
     
         // Batch insert data
         if (!empty($csvData)) {
@@ -68,14 +72,17 @@ class import_model extends CI_Model{
     public function import_reservations($filePath) {
         $dict_client=$this->client_model->dict();
         $dict_service=$this->service_model->dict();
-        $csvData = array();
+        // $csvData = array();
         if (($handle = fopen($filePath, "r")) !== FALSE) {
             $row = 0;
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 if ($row > 0) { // Skip header row
-                    // la date debut est compose de deux colonnes
-                    $date_debut = $data[2] . ' ' . $data[3];
-                    $this->reservation_model->prendre_rendez_vous($dict_client[$data[0]], $dict_service[$data[4]], $date_debut);
+                    $dateParts = explode('/', $data[2]);
+                    if (count($dateParts) == 3) {
+                        $formattedDate = $dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0];
+                        $date_debut = $formattedDate . ' ' . $data[3];
+                        $this->reservation_model->prendre_rendez_vous($dict_client[$data[0]], $dict_service[$data[4]], $date_debut);
+                    }
                 }
                 $row++;
             }

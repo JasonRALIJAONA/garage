@@ -35,7 +35,7 @@ class service_model extends CI_Model {
         $tab = array();
         
         for ($i = 0; $i < count($data); $i++) { 
-            $tab[$data[$i]->type] = $data[$i]->id;
+            $tab[$data[$i]['type']] = $data[$i]['id'];
         }
 
         return $tab;
