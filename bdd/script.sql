@@ -108,3 +108,10 @@ CREATE TABLE g_admins (
 -- Insertion des administrateurs
 INSERT INTO g_admins (pseudo, mdp) VALUES
 ('admin', sha1('admin'));
+
+CREATE TABLE `configurations` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `config_key` VARCHAR(50) NOT NULL,
+    `config_value` VARCHAR(255) NOT NULL
+);
+INSERT INTO `configurations` (`config_key`, `config_value`) VALUES ('reference_date', '2024-07-10');

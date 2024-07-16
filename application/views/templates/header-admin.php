@@ -248,6 +248,11 @@
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="">
+            <span class="menu-title">Date réference</span>  
+          </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">Rendez-vous</span>
@@ -260,7 +265,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?php echo base_url()?>">
             <span class="menu-title">Deconnexion</span>  
           </a>
           </li>
