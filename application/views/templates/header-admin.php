@@ -274,6 +274,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('import') ?>">
+            <i class="mdi mdi-file-import menu-icon"></i>
             <span class="menu-title">Importer</span>  
           </a>
           </li>
