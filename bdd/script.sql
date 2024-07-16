@@ -144,8 +144,17 @@ DELIMITER ;
 CREATE OR REPLACE VIEW montant_total_chiffre_affaire AS
 SELECT
     DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') AS date_reference,
-    SUM(CASE WHEN r.date_paiement IS NOT NULL AND r.date_paiement <= DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') THEN s.prix ELSE 0 END) AS montant_paye,
-    SUM(CASE WHEN (r.date_paiement IS NULL OR r.date_paiement > DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59')) AND r.date_debut <= DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') THEN s.prix ELSE 0 END) AS montant_non_paye
+    SUM(CASE 
+            WHEN r.date_paiement IS NOT NULL AND r.date_paiement <= DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') 
+                THEN CASE WHEN s.prix > 0 THEN s.prix ELSE r.prix END
+            ELSE 0 
+        END) AS montant_paye,
+    SUM(CASE 
+            WHEN (r.date_paiement IS NULL OR r.date_paiement > DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59')) 
+                AND r.date_debut <= DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') 
+                THEN CASE WHEN s.prix > 0 THEN s.prix ELSE r.prix END
+            ELSE 0 
+        END) AS montant_non_paye
 FROM
     g_reservations r
 JOIN
@@ -157,7 +166,11 @@ JOIN
 CREATE OR REPLACE VIEW montant_chiffre_affaire_par_type_voiture AS
 SELECT
     t.nom AS type_voiture,
-    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN s.prix ELSE 0 END) AS montant_paye
+    SUM(CASE 
+            WHEN r.date_paiement IS NOT NULL 
+                THEN CASE WHEN s.prix > 0 THEN s.prix ELSE r.prix END 
+            ELSE 0 
+        END) AS montant_paye
 FROM
     g_reservations r
 JOIN
@@ -169,11 +182,16 @@ JOIN
 GROUP BY
     t.nom;
 
+
 CREATE OR REPLACE VIEW montant_chiffre_affaire_par_voiture AS
 SELECT
     t.nom AS type_voiture,
     c.numero_voiture AS voiture,
-    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN r.prix ELSE 0 END) AS montant_paye
+    SUM(CASE 
+            WHEN r.date_paiement IS NOT NULL 
+                THEN CASE WHEN s.prix > 0 THEN s.prix ELSE r.prix END 
+            ELSE 0 
+        END) AS montant_paye
 FROM
     g_reservations r
 JOIN
