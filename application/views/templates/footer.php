@@ -14,38 +14,26 @@
             </div>
             <div class="col-md">
               <div class="ftco-footer-widget mb-4 ml-md-5">
-                <h2 class="ftco-heading-2">Information</h2>
+                <h2 class="ftco-heading-2">NATHAN</h2>
                 <ul class="list-unstyled">
-                  <li><a href="#" class="py-2 d-block">About</a></li>
-                  <li><a href="#" class="py-2 d-block">Services</a></li>
-                  <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
-                  <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
-                  <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li>
+                  <li><a href="#" class="py-2 d-block">ETU2485</a></li>
                 </ul>
               </div>
             </div>
             <div class="col-md">
                <div class="ftco-footer-widget mb-4">
-                <h2 class="ftco-heading-2">Customer Support</h2>
+                <h2 class="ftco-heading-2">JASON</h2>
                 <ul class="list-unstyled">
-                  <li><a href="#" class="py-2 d-block">FAQ</a></li>
-                  <li><a href="#" class="py-2 d-block">Payment Option</a></li>
-                  <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
-                  <li><a href="#" class="py-2 d-block">How it works</a></li>
-                  <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                  <li><a href="#" class="py-2 d-block">ETU2529</a></li>
                 </ul>
               </div>
             </div>
             <div class="col-md">
-              <div class="ftco-footer-widget mb-4">
-                  <h2 class="ftco-heading-2">Have a Questions?</h2>
-                  <div class="block-23 mb-3">
-                    <ul>
-                      <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                      <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                      <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-                    </ul>
-                  </div>
+               <div class="ftco-footer-widget mb-4">
+                <h2 class="ftco-heading-2">ONITSOA</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="py-2 d-block">ETU2382</a></li>
+                </ul>
               </div>
             </div>
           </div>
