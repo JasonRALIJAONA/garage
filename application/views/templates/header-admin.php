@@ -20,9 +20,9 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/vertical-layout-light/style.css')?>">
   <!-- endinject -->
-  <link href="<?php echo base_url('assets/css/main.min.css') ?>" rel="stylesheet" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/main.min.css')?>">
   <!-- jQuery -->
-  <script src="<?php echo base_url('js/jquery-3.2.1.min.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>
   <!-- FullCalendar JS -->
   <script src="<?php echo base_url('assets/js/main.min.js') ?>"></script>
   <link rel="shortcut icon" href="images/favicon.png" />
@@ -231,6 +231,7 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
+
                 <li class="nav-item"> <a class="nav-link" href="list">Listes</a></li>
               </ul>
             </div>
@@ -260,7 +261,7 @@
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Calendrier</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('reservation')?>">Calendrier</a></li>
               </ul>
             </div>
           </li>

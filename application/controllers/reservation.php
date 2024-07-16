@@ -13,6 +13,18 @@ class reservation extends CI_Controller {
         require_once APPPATH . 'libraries/fpdf185/fpdf.php';
     }
 
+    public function index() {
+        // Charger les rendez-vous depuis le modèle
+        $reservations = $this->reservation_model->get_all_reservations();
+
+        // Préparer les données pour la vue
+        // $data['title'] = 'Calendrier des Rendez-vous';
+        
+        $data['contents'] = 'calendrier';
+        $data['reservations'] = $reservations;
+        $this->load->view('templates/template-admin', $data);
+    }
+
     public function process_reservation() {
         // Récupérer les données du formulaire
         $client_id = $this->session->userdata('client_id');
@@ -106,6 +118,22 @@ class reservation extends CI_Controller {
         $pdf->Output();
     }
     
+    public function get_reservations() {
+        $this->load->model('reservation_model');
+        $reservations = $this->reservation_model->get_all_reservations();
+    
+        $events = array();
+    
+        foreach ($reservations as $reservation) {
+            $events[] = array(
+                'title' => 'Réservation ' . $reservation->id,
+                'start' => $reservation->date_debut,
+                'end' => $reservation->date_fin
+            );
+        }
+    
+        echo json_encode($events);
+    }
     
     
 }
