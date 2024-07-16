@@ -24,9 +24,9 @@ CREATE TABLE g_services (
 
 -- Insertion des types de service
 INSERT INTO g_services (type, duree, prix) VALUES
-('Reparation simple', '01:00:00', 150000),
-('Reparation standard', '02:00:00', 250000),
-('Reparation complexe', '08:00:00', 800000),
+('Réparation simple', '01:00:00', 150000),
+('Réparation standard', '02:00:00', 250000),
+('Réparation complexe', '08:00:00', 800000),
 ('Entretien', '02:30:00', 300000);
 
 -- Table pour les types de voiture
@@ -37,9 +37,9 @@ CREATE TABLE g_typevoiture (
 
 -- Insertion des types de voiture
 INSERT INTO g_typevoiture (nom) VALUES
-('legere'),
+('légère'),
 ('4x4'),
-('Utilitaire');
+('utilitaire');
 
 -- Table pour les clients
 CREATE TABLE g_clients (
@@ -58,7 +58,7 @@ CREATE TABLE g_reservations (
     date_debut DATETIME NOT NULL,
     date_fin DATETIME NOT NULL,
     date_paiement DATETIME,
-    prix prix INT NOT NULL
+    prix INT NOT NULL,
     FOREIGN KEY (id_slot) REFERENCES g_slots(id),
     FOREIGN KEY (id_service) REFERENCES g_services(id),
     FOREIGN KEY (id_client) REFERENCES g_clients(id),
@@ -81,7 +81,7 @@ BEGIN
     -- Vérifier si le type de voiture existe
     IF car_type_id IS NULL THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Type de voiture non trouve';
+        SET MESSAGE_TEXT = 'Type de voiture non trouvé';
     END IF;
 
     -- Vérifier si le client existe déjà
