@@ -3,7 +3,7 @@
           <div class="row mb-5">
             <div class="col-md">
               <div class="ftco-footer-widget mb-4">
-                <h2 class="ftco-heading-2"><a href="#" class="logo">Auto<span>Mecano</span></a></h2>
+                <h2 class="ftco-heading-2"><a href="#" style="color: #4B49AC;">Auto<span>Mecano</span></a></h2>
                 <p>Un petit fleuve nommé Duden coule près de notre garage et nous approvisionne en pièces nécessaires. C'est un lieu idéal où votre véhicule reçoit les meilleurs soins et l'attention qu'il mérite.</p>
                 <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                   <li class="ftco-animate fadeInUp ftco-animated"><a href="#"><span class="icon-twitter"></span></a></li>
