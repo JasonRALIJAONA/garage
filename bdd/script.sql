@@ -58,11 +58,14 @@ CREATE TABLE g_reservations (
     date_debut DATETIME NOT NULL,
     date_fin DATETIME NOT NULL,
     date_paiement DATETIME,
+    prix prix INT NOT NULL
     FOREIGN KEY (id_slot) REFERENCES g_slots(id),
     FOREIGN KEY (id_service) REFERENCES g_services(id),
     FOREIGN KEY (id_client) REFERENCES g_clients(id),
     CHECK (date_paiement IS NULL OR date_paiement >= date_debut)
 );
+
+
 DELIMITER //
 CREATE PROCEDURE ClientLogin(
     IN car_number VARCHAR(20),

@@ -60,7 +60,7 @@ class reservation_model extends CI_Model{
         $this->db->delete('g_reservations');
     }
 
-    public function prendre_rendez_vous($client_id, $service_id, $date_debut) {
+    public function prendre_rendez_vous($client_id, $service_id, $date_debut, $prix = null) {
         // Calculer la date de fin en fonction de la durée du service
         $service = $this->service_model->get_by_id($service_id);
         $duration = $service['duree']; // Durée du service au format '01:00:00'
@@ -99,13 +99,19 @@ class reservation_model extends CI_Model{
             return "Aucun créneau disponible pour ce créneau horaire.";
         }
     
+        // Si le prix n'est pas fourni, utiliser le prix du service
+        if ($prix === null) {
+            $prix = $service['prix'];
+        }
+    
         // Effectuer la réservation
         $reservation_data = array(
             'id_slot' => $available_slot_id,
             'id_service' => $service_id,
             'id_client' => $client_id,
             'date_debut' => $date_debut_obj->format('Y-m-d H:i:s'),
-            'date_fin' => $date_fin_obj->format('Y-m-d H:i:s')
+            'date_fin' => $date_fin_obj->format('Y-m-d H:i:s'),
+            'prix' => $prix
         );
     
         $this->db->insert('g_reservations', $reservation_data);
