@@ -168,3 +168,19 @@ JOIN
     g_typevoiture t ON c.id_typeVoiture = t.id
 GROUP BY
     t.nom;
+
+CREATE OR REPLACE VIEW montant_chiffre_affaire_par_voiture AS
+SELECT
+    t.nom AS type_voiture,
+    c.numero_voiture AS voiture,
+    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN r.prix ELSE 0 END) AS montant_paye
+FROM
+    g_reservations r
+JOIN
+    g_services s ON r.id_service = s.id
+JOIN
+    g_clients c ON r.id_client = c.id
+JOIN
+    g_typevoiture t ON c.id_typeVoiture = t.id
+GROUP BY
+    t.nom, c.numero_voiture;

@@ -16,73 +16,83 @@
         </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Graphique circulaire
-            var ctx = document.getElementById('statChart').getContext('2d');
-            var statData = {
-                labels: ['Montant Payé', 'Montant Non Payé'],
-                datasets: [{
-                    data: [<?php echo $stats['montant_paye']; ?>, <?php echo $stats['montant_non_paye']; ?>],
-                    backgroundColor: ['#4caf50', '#f44336'],
-                }]
-            };
+       document.addEventListener('DOMContentLoaded', function() {
+    // Graphique circulaire
+    var ctx = document.getElementById('statChart').getContext('2d');
+    var statData = {
+        labels: ['Montant Payé', 'Montant Non Payé'],
+        datasets: [{
+            data: [<?php echo $stats['montant_paye']; ?>, <?php echo $stats['montant_non_paye']; ?>],
+            backgroundColor: ['#4caf50', '#4B49AC'],
+        }]
+    };
 
-            var statChart = new Chart(ctx, {
-                type: 'pie',
-                data: statData,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return tooltipItem.label + ': ' + tooltipItem.raw;
-                                }
-                            }
+    var statChart = new Chart(ctx, {
+        type: 'pie',
+        data: statData,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw;
                         }
                     }
                 }
-            });
+            }
+        }
+    });
 
-            // Graphique en barres
-            var barCtx = document.getElementById('barChart').getContext('2d');
-            var barLabels = [];
-            var montantPayeData = [];
+    // Graphique en barres
+    var barCtx = document.getElementById('barChart').getContext('2d');
+    var barLabels = [];
+    var montantPayeData = [];
 
-            <?php foreach ($stats_by_type as $stat) { ?>
-                barLabels.push('<?php echo $stat['type_voiture']; ?>');
-                montantPayeData.push(<?php echo $stat['montant_paye']; ?>);
-            <?php } ?>
+    <?php foreach ($stats_by_type as $stat) { ?>
+        barLabels.push('<?php echo $stat['type_voiture']; ?>');
+        montantPayeData.push(<?php echo $stat['montant_paye']; ?>);
+    <?php } ?>
 
-            var barData = {
-                labels: barLabels,
-                datasets: [
-                    {
-                        label: 'Montant Payé',
-                        backgroundColor: '#4caf50',
-                        data: montantPayeData
-                    }
-                ]
-            };
+    var barData = {
+        labels: barLabels,
+        datasets: [
+            {
+                label: 'Montant Payé',
+                backgroundColor: '#4caf50',
+                data: montantPayeData
+            }
+        ]
+    };
 
-            var barChart = new Chart(barCtx, {
-                type: 'bar',
-                data: barData,
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            stacked: true
-                        },
-                        y: {
-                            min: 0,
-                            stacked: true
-                        }
-                    }
+    var barChart = new Chart(barCtx, {
+        type: 'bar',
+        data: barData,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: true
+                },
+                y: {
+                    beginAtZero: true,
+                    stacked: true
                 }
-            });
-        });
+            },
+            onClick: function(event, elements) {
+                    if (elements.length > 0) {
+                    var datasetIndex = elements[0]._datasetIndex; // Index du dataset
+                    var index = elements[0]._index; // Index de l'élément dans le dataset sélectionné
+                    var typeVoiture = barData.labels[index]; // Récupérer le label à l'index sélectionné
+
+                    window.location.href = "<?php echo base_url('dashboard/details_by_type_voiture/'); ?>" + encodeURIComponent(typeVoiture);
+                }
+            }
+        }
+    });
+});
+
     </script>
