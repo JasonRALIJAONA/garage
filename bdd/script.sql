@@ -154,8 +154,7 @@ JOIN
 CREATE OR REPLACE VIEW montant_chiffre_affaire_par_type_voiture AS
 SELECT
     t.nom AS type_voiture,
-    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN s.prix ELSE 0 END) AS montant_paye,
-    SUM(CASE WHEN r.date_paiement IS NULL THEN s.prix ELSE 0 END) AS montant_non_paye
+    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN s.prix ELSE 0 END) AS montant_paye
 FROM
     g_reservations r
 JOIN
