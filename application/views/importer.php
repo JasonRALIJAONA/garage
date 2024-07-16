@@ -10,7 +10,7 @@
                     </div>
                   <?php } ?>
                   <h4 class="card-title">Importer</h4>
-                  <?php echo form_open('', array('class'=>'forms-sample')); ?>
+                  <?php echo form_open('import/import_csv', array('class'=>'forms-sample' , 'enctype' => 'multipart/form-data')); ?>
                     <div class="form-group">
                       <label for="exampleInputUsername1">Services</label>
                       <input type="file" class="form-control" placeholder="services" name="services">

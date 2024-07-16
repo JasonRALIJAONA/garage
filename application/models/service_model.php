@@ -29,6 +29,17 @@ class service_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('g_services');
     }
+
+    public function dict(){
+        $data = $this->get_all();
+        $tab = array();
+        
+        for ($i = 0; $i < count($data); $i++) { 
+            $tab[$data[$i]->type] = $data[$i]->id;
+        }
+
+        return $tab;
+    }
 }
 
 ?>
