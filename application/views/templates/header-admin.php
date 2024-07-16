@@ -19,6 +19,7 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/vertical-layout-light/style.css')?>">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/calendrier.css') ?>">
   <!-- endinject -->
   <link rel="stylesheet" href="<?php echo base_url('assets/css/main.min.css') ?>">
   <!-- jQuery -->
@@ -265,6 +266,11 @@
                 <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('reservation')?>">Calendrier</a></li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+            <span class="menu-title">Clear database</span>  
+          </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url()?>">
