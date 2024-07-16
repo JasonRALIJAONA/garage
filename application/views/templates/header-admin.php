@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/css/main.min.css') ?>">
   <!-- jQuery -->
   <script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- FullCalendar JS -->
   <script src="<?php echo base_url('assets/js/main.min.js') ?>"></script>
   <link rel="shortcut icon" href="images/favicon.png" />
