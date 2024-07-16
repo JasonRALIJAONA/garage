@@ -138,15 +138,31 @@ BEGIN
 END //
 DELIMITER ;
 
-
-CREATE or replace VIEW montant_total_chiffre_affaire AS
+CREATE OR REPLACE VIEW montant_total_chiffre_affaire AS
 SELECT
-    c.date_reference,
-    SUM(CASE WHEN r.date_paiement IS NOT NULL AND r.date_paiement <= c.date_reference THEN s.prix ELSE 0 END) AS montant_paye,
-    SUM(CASE WHEN (r.date_paiement IS NULL OR r.date_paiement > c.date_reference) AND r.date_debut <= c.date_reference THEN s.prix ELSE 0 END) AS montant_non_paye
+    DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') AS date_reference,
+    SUM(CASE WHEN r.date_paiement IS NOT NULL AND r.date_paiement <= DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') THEN s.prix ELSE 0 END) AS montant_paye,
+    SUM(CASE WHEN (r.date_paiement IS NULL OR r.date_paiement > DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59')) AND r.date_debut <= DATE_FORMAT(c.date_reference, '%Y-%m-%d 23:59:59') THEN s.prix ELSE 0 END) AS montant_non_paye
 FROM
     g_reservations r
 JOIN
     g_services s ON r.id_service = s.id
 JOIN
     configuration c;
+
+
+CREATE OR REPLACE VIEW montant_chiffre_affaire_par_type_voiture AS
+SELECT
+    t.nom AS type_voiture,
+    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN s.prix ELSE 0 END) AS montant_paye,
+    SUM(CASE WHEN r.date_paiement IS NULL THEN s.prix ELSE 0 END) AS montant_non_paye
+FROM
+    g_reservations r
+JOIN
+    g_services s ON r.id_service = s.id
+JOIN
+    g_clients c ON r.id_client = c.id
+JOIN
+    g_typevoiture t ON c.id_typeVoiture = t.id
+GROUP BY
+    t.nom;

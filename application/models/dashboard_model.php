@@ -12,5 +12,10 @@ class dashboard_model extends CI_Model {
         $query = $this->db->get('montant_total_chiffre_affaire');
         return $query->row_array();
     }
+
+    public function get_montant_chiffre_affaire_par_type_voiture() {
+        $query = $this->db->get('montant_chiffre_affaire_par_type_voiture');
+        return $query->result_array();
+    }
 }
 ?>
