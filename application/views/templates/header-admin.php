@@ -241,16 +241,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-              <i class="icon-columns menu-icon"></i>
+            <a class="nav-link" href="<?php echo base_url("devis/list") ?>">
+              <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Devis</span>
-              <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href=<?php echo base_url("devis/list") ?>>Listes</a></li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('configuration')?>">
@@ -259,16 +253,10 @@
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="mdi mdi-calendar-blank menu-icon"></i>
-              <span class="menu-title">Rendez-vous</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="charts">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('reservation')?>">Calendrier</a></li>
-              </ul>
-            </div>
+            <a class="nav-link" href="<?php echo base_url('reservation')?>">
+            <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
+            <span class="menu-title">Rendez-vous</span>  
+          </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('data/clear') ?>">
