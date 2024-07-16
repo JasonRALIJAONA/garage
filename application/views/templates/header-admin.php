@@ -261,7 +261,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?php echo base_url('data/clear') ?>">
             <span class="menu-title">Clear database</span>  
           </a>
           </li>
