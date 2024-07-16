@@ -274,8 +274,7 @@
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
-            <i class="mdi mdi-car menu-icon"></i>
+            <a class="nav-link" href="<?php echo base_url('dashboard')?>">
             <span class="menu-title">Slots</span>  
           </a>
           </li>
