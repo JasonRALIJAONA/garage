@@ -18,6 +18,7 @@ class Dashboard extends CI_Controller {
         // $data['title'] = 'Statistiques';
         $data['contents'] = 'dashboard-page';
         $data['stats'] = $this->dashboard_model->get_montant_total_chiffre_affaire();
+        $data['stats_by_type'] = $this->dashboard_model->get_montant_chiffre_affaire_par_type_voiture();
         $this->load->view('templates/template-admin', $data);
     }
 
