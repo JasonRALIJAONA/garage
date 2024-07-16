@@ -22,7 +22,7 @@ class reservation extends CI_Controller {
         
         $data['contents'] = 'calendrier';
         $data['reservations'] = $reservations;
-        $this->load->view('templates/template', $data);
+        $this->load->view('templates/template-admin', $data);
     }
 
     public function process_reservation() {
