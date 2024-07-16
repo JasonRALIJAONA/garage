@@ -271,6 +271,11 @@
           </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="">
+            <span class="menu-title">Slots</span>  
+          </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url()?>">
             <span class="menu-title">Deconnexion</span>  
           </a>
