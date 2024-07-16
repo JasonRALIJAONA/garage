@@ -20,7 +20,7 @@ class import extends CI_Controller{
         $travaux_path = $_FILES["travaux"]["tmp_name"];
         $this->import_model->import_csv($service_path , $travaux_path);
 
-        // redirect('import');
+        redirect('service/list');
     }
 }
 ?>
