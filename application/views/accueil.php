@@ -28,7 +28,7 @@ images
 							
 							<select name="service_id" id="service_id" class="form-control">
 							<?php foreach ($services as $service): ?>
-								<option style="color: black;" value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?></option>
+								<option style="color: black;" value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?>(<?php echo $service['prix']; ?> Ar)</option>
 							<?php endforeach; ?>
 							</select>
 						</div>
