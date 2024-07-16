@@ -249,7 +249,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?php echo base_url('configuration')?>">
             <span class="menu-title">Date réference</span>  
           </a>
           </li>
