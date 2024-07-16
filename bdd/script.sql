@@ -114,3 +114,41 @@ CREATE TABLE `configuration` (
 );
 
 INSERT INTO `configuration` (date_reference) VALUES ('2024-01-01');
+
+DELIMITER //
+CREATE PROCEDURE VueUtilisationSlotsParJour(IN jour DATE)
+BEGIN
+    SELECT
+        g_slots.nom AS slot,
+        g_reservations.id AS reservation_id,
+        g_clients.numero_voiture AS voiture,
+        g_services.type AS service,
+        g_reservations.date_debut,
+        g_reservations.date_fin
+    FROM
+        g_reservations
+    JOIN
+        g_slots ON g_reservations.id_slot = g_slots.id
+    JOIN
+        g_services ON g_reservations.id_service = g_services.id
+    JOIN
+        g_clients ON g_reservations.id_client = g_clients.id
+    WHERE
+        DATE(g_reservations.date_debut) = jour;
+END //
+DELIMITER ;
+
+
+CREATE VIEW montant_total_chiffre_affaire AS
+SELECT
+    c.date_reference,
+    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN s.prix ELSE 0 END) AS montant_paye,
+    SUM(CASE WHEN r.date_paiement IS NULL THEN s.prix ELSE 0 END) AS montant_non_paye
+FROM
+    g_reservations r
+JOIN
+    g_services s ON r.id_service = s.id
+JOIN
+    configuration c
+WHERE
+    DATE(r.date_debut) >= c.date_reference;

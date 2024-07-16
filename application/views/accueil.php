@@ -11,7 +11,6 @@
         </div>
       </div>
     </div>
-images
      <section class="ftco-section ftco-no-pt bg-light">
     	<div class="container">
     		<div class="row no-gutters">
@@ -20,13 +19,13 @@ images
 	  					<div class="col-md-4 d-flex align-items-center">
                 
                 <form class="request-form ftco-animate bg-primary" method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
-                  <h2>Prenez votre rendez-vous</h2>
+                  <h2 style="margin-bottom: 20px;">Prenez votre rendez-vous</h2>
 				  
 				  <div class="d-flex">  
 						<div class="form-group">
 							<label for="service_id" class="label">Type de service:</label>
 							
-							<select name="service_id" id="service_id" class="form-control">
+							<select style="margin-top: 10px;" name="service_id" id="service_id" class="form-control">
 							<?php foreach ($services as $service): ?>
 								<option style="color: black;" value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?>(<?php echo $service['prix']; ?> Ar)</option>
 							<?php endforeach; ?>
@@ -37,7 +36,7 @@ images
                     <div class="form-group">
                       <label for="date_debut" class="label">Date et heure de début:</label>
                        
-					  <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
+					  <input style="margin-top: 10px;" type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
                   </div>
                     
                     <?php if (isset($error_message)): ?>
