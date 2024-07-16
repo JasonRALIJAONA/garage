@@ -35,16 +35,4 @@
                         </div>
                         </div>
                     </div>
-                    <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Date de paiement</h4>
-                  <form class="forms-sample">
-                    <div class="form-group">
-                      <label for="exampleInputUsername1">Date de paiement</label>
-                      <input type="date" class="form-control" placeholder="date de paiement">
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  </form>
-                </div>
-              </div>
     </div>
