@@ -8,9 +8,16 @@ class Dashboard extends CI_Controller {
         $this->load->model('dashboard_model');
     }
 
-    public function index() {
+    public function slot() {
         // $data['title'] = 'Calendrier des Rendez-vous';
         $data['contents'] = 'filtre-slot';
+        $this->load->view('templates/template-admin', $data);
+    }
+
+    public function index() {
+        // $data['title'] = 'Statistiques';
+        $data['contents'] = 'dashboard-page';
+        $data['stats'] = $this->dashboard_model->get_montant_total_chiffre_affaire();
         $this->load->view('templates/template-admin', $data);
     }
 

@@ -139,16 +139,14 @@ END //
 DELIMITER ;
 
 
-CREATE VIEW montant_total_chiffre_affaire AS
+CREATE or replace VIEW montant_total_chiffre_affaire AS
 SELECT
     c.date_reference,
-    SUM(CASE WHEN r.date_paiement IS NOT NULL THEN s.prix ELSE 0 END) AS montant_paye,
-    SUM(CASE WHEN r.date_paiement IS NULL THEN s.prix ELSE 0 END) AS montant_non_paye
+    SUM(CASE WHEN r.date_paiement IS NOT NULL AND r.date_paiement <= c.date_reference THEN s.prix ELSE 0 END) AS montant_paye,
+    SUM(CASE WHEN (r.date_paiement IS NULL OR r.date_paiement > c.date_reference) AND r.date_debut <= c.date_reference THEN s.prix ELSE 0 END) AS montant_non_paye
 FROM
     g_reservations r
 JOIN
     g_services s ON r.id_service = s.id
 JOIN
-    configuration c
-WHERE
-    DATE(r.date_debut) >= c.date_reference;
+    configuration c;
