@@ -225,6 +225,12 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
+              <a class="nav-link" href="">
+              <i class="mdi mdi-view-dashboard menu-icon"></i>
+              <span class="menu-title">Dashboard</span>  
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('service/list') ?>">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">Services</span>
