@@ -20,20 +20,26 @@ images
 	  					<div class="col-md-4 d-flex align-items-center">
                 
                 <form class="request-form ftco-animate bg-primary" method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
-                  <h2>Prenez votre rendez-vous</h2>  
-                    <div class="form-group mr-2">
-                    <label for="service_id" class="label">Type de service:</label>
-                    <select name="service_id" id="service_id" class="form-control">
-                      <?php foreach ($services as $service): ?>
-                          <option style="color: black;" value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?></option>
-                      <?php endforeach; ?>
-                    </select>
-                    </div><br>
-                    <div class="form-group mr-2">
+                  <h2>Prenez votre rendez-vous</h2>
+				  
+				  <div class="d-flex">  
+						<div class="form-group">
+							<label for="service_id" class="label">Type de service:</label>
+							
+							<select name="service_id" id="service_id" class="form-control">
+							<?php foreach ($services as $service): ?>
+								<option style="color: black;" value="<?php echo $service['id']; ?>"><?php echo $service['type']; ?></option>
+							<?php endforeach; ?>
+							</select>
+						</div>
+					</div>
+					
+                    <div class="form-group">
                       <label for="date_debut" class="label">Date et heure de début:</label>
-                      <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
+                       
+					  <input type="datetime-local" name="date_debut" id="date_debut" class="form-control" required>
                   </div>
-                    <br>
+                    
                     <?php if (isset($error_message)): ?>
                     <div class="alert alert-danger" role="alert"><?php echo $error_message; ?></div>
                 <?php endif; ?>

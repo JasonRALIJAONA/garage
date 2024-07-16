@@ -56,7 +56,7 @@
 				<p></p>
 				<button id="signIn">Utilisateur</button>
 			</div>
-			<div class="overlay-panel overlay-right">
+			<div class="overlay-panel overlay-right" style="background-color: #1089ff ;">
 				<h1>AutoMecano</h1>
 				<p></p>
 				<button id="signUp">Administrateur</button>
