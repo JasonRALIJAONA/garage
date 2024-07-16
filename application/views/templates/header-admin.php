@@ -235,16 +235,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('service/list') ?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Services</span>
+              <span class="menu-title">CRUD</span>
+              <i class="menu-arrow"></i>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url("devis/list") ?>">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Devis</span>
-            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('service/list') ?>">Services</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url("devis/list") ?>">Devis</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo base_url('configuration')?>">
