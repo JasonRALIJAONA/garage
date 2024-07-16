@@ -225,7 +225,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="<?php echo base_url('dashboard')?>">
               <i class="mdi mdi-view-dashboard menu-icon"></i>
               <span class="menu-title">Dashboard</span>  
             </a>
@@ -279,7 +279,7 @@
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('dashboard')?>">
+            <a class="nav-link" href="<?php echo base_url('dashboard/slot')?>">
             <i class="mdi mdi-car menu-icon"></i>
             <span class="menu-title">Slots</span>  
           </a>
