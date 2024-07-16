@@ -51,7 +51,7 @@
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
-			<div class="overlay-panel overlay-left">
+			<div class="overlay-panel overlay-left" style="background-color: #4B49AC;">
 				<h1>AutoMecano</h1>
 				<p></p>
 				<button id="signIn">Utilisateur</button>
