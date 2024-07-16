@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <?php 
                 $attributes = array('class' =>'form-inline');
-                echo form_open('customer/research' , $attributes);
+                echo form_open('Customer/research' , $attributes);
             ?>
                 <div class="form-group">
                     <label for="exampleInputName2">First Name</label>

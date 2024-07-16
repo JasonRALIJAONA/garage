@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class login_admin extends CI_Controller {
+class Login_admin extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         // Chargez le modèle nécessaire
-        $this->load->model('admin_model');
+        $this->load->model('Admin_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
     }
@@ -27,12 +27,12 @@ class login_admin extends CI_Controller {
         // Vérifier si les champs requis sont remplis
         if (!empty($nom) && !empty($mdp)) {
             // Appeler la méthode du modèle pour vérifier et inscrire le client si nécessaire
-            $admin_id = $this->admin_model->login($nom, $mdp);
+            $admin_id = $this->Admin_model->login($nom, $mdp);
 
             if ($admin_id !== NULL) {
                 // Rediriger vers une autre page après la connexion réussie
                 $this->session->set_userdata('admin_id', $admin_id);
-                redirect('dashboard');
+                redirect('Dashboard');
             }else{
                 // Afficher un message d'erreur si les informations d'identification sont incorrectes
                 $data['erreur'] = "Nom d'utilisateur ou mot de passe incorrect.";

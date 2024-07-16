@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class reservation_model extends CI_Model{
+class Reservation_model extends CI_Model{
     public function __construct() {
         $this->load->database();
-        $this->load->model('service_model');
+        $this->load->model('Service_model');
     }
 
     public function get_reservation_by_id($reservation_id) {
@@ -62,7 +62,7 @@ class reservation_model extends CI_Model{
 
     public function prendre_rendez_vous($client_id, $service_id, $date_debut, $prix = null) {
         // Calculer la date de fin en fonction de la durée du service
-        $service = $this->service_model->get_by_id($service_id);
+        $service = $this->Service_model->get_by_id($service_id);
         $duration = $service['duree']; // Durée du service au format '01:00:00'
         
         // Convertir la durée au format attendu par DateInterval (PnDTnHnMnS)

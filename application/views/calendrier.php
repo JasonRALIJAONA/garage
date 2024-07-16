@@ -59,7 +59,7 @@
                             },
                             events: function(fetchInfo, successCallback, failureCallback) {
                               $.ajax({
-                                  url: "<?php echo base_url('reservation/get_reservations'); ?>",
+                                  url: "<?php echo base_url('Reservation/get_reservations'); ?>",
                                   type: 'GET',
                                   success: function(data) {
                                       var events = JSON.parse(data);
@@ -83,7 +83,7 @@
                         $('#addRdvForm').on('submit', function(e) {
                             e.preventDefault();
                             $.ajax({
-                                url: "<?php echo base_url('reservation/process_reservation'); ?>",
+                                url: "<?php echo base_url('Reservation/process_reservation'); ?>",
                                 type: 'POST',
                                 data: $(this).serialize(),
                                 success: function(response) {

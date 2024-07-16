@@ -9,7 +9,7 @@
 <body>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<?php echo form_open('login_admin/process_login'); ?>
+		<?php echo form_open('Login_admin/process_login'); ?>
 			<h1>Administrateur</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -29,7 +29,7 @@
 	</div>
 	
 	<div class="form-container sign-in-container">
-	<?php echo form_open('login/process_login'); ?>
+	<?php echo form_open('Login/process_login'); ?>
 			<h1>Utilisateur</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>

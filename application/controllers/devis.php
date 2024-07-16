@@ -1,23 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class devis extends CI_Controller {
+class Devis extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('reservation_model');
+        $this->load->model('Reservation_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
     }
 
     public function list(){
-        $data['devis']=$this->reservation_model->get_all_reservation();
+        $data['devis']=$this->Reservation_model->get_all_reservation();
         $data['contents'] = 'list-devis';
         
         $this->load->view('templates/template-admin', $data);
     }
 
     public function form($id){
-        $data['devis']=$this->reservation_model->get_reservation_by_id($id);
+        $data['devis']=$this->Reservation_model->get_reservation_by_id($id);
         $data['contents'] = 'date-paiement';
         
         $this->load->view('templates/template-admin', $data);
@@ -31,8 +31,8 @@ class devis extends CI_Controller {
         $data = array(
             'date_paiement' => $date_paiement
         );
-        $this->reservation_model->update($id, $data);
-        redirect('devis/list');
+        $this->Reservation_model->update($id, $data);
+        redirect('Devis/list');
     }
 
     

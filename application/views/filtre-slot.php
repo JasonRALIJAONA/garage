@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Filtre slot</h4>
-                <form id="filterForm" method="post" action="<?php echo base_url('dashboard/filter_slots'); ?>">
+                <form id="filterForm" method="post" action="<?php echo base_url('Dashboard/filter_slots'); ?>">
                     <div class="form-group">
                         <label for="filterDate">Date de filtre</label>
                         <input type="date" id="filterDate" name="filterDate" class="form-control" placeholder="Date" required>

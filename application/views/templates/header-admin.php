@@ -229,7 +229,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-              <a class="nav-link" href="<?php echo base_url('dashboard')?>">
+              <a class="nav-link" href="<?php echo base_url('Dashboard')?>">
               <i class="mdi mdi-view-dashboard menu-icon"></i>
               <span class="menu-title">Dashboard</span>  
             </a>
@@ -242,37 +242,37 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('service/list') ?>">Services</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url("devis/list") ?>">Devis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('Service/list') ?>">Services</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?php echo base_url("Devis/list") ?>">Devis</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('configuration')?>">
+            <a class="nav-link" href="<?php echo base_url('Configuration')?>">
             <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
             <span class="menu-title">Date réference</span>  
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('reservation')?>">
+            <a class="nav-link" href="<?php echo base_url('Reservation')?>">
             <i class="mdi mdi-calendar-multiple-check menu-icon"></i>
             <span class="menu-title">Rendez-vous</span>  
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('import') ?>">
+            <a class="nav-link" href="<?php echo base_url('Import') ?>">
             <i class="mdi mdi-file-import menu-icon"></i>
             <span class="menu-title">Importer</span>  
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('slot')?>">
+            <a class="nav-link" href="<?php echo base_url('Slot')?>">
             <i class="mdi mdi-car menu-icon"></i>
             <span class="menu-title">Slots</span>  
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url('data/clear') ?>">
+            <a class="nav-link" href="<?php echo base_url('Data/clear') ?>">
             <i class="mdi mdi-delete-forever menu-icon"></i>
             <span class="menu-title">Clear database</span>  
             </a>

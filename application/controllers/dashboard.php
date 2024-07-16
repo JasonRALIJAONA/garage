@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class dashboard extends CI_Controller {
+class Dashboard extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('dashboard_model');
+        $this->load->model('Dashboard_model');
     }
 
     public function slot() {
@@ -17,8 +17,8 @@ class dashboard extends CI_Controller {
     public function index() {
         // $data['title'] = 'Statistiques';
         $data['contents'] = 'dashboard-page';
-        $data['stats'] = $this->dashboard_model->get_montant_total_chiffre_affaire();
-        $data['stats_by_type'] = $this->dashboard_model->get_montant_chiffre_affaire_par_type_voiture();
+        $data['stats'] = $this->Dashboard_model->get_montant_total_chiffre_affaire();
+        $data['stats_by_type'] = $this->Dashboard_model->get_montant_chiffre_affaire_par_type_voiture();
         $this->load->view('templates/template-admin', $data);
     }
 
@@ -26,7 +26,7 @@ class dashboard extends CI_Controller {
         $filterDate = $this->input->post('filterDate');
         
         if (!empty($filterDate)) {
-            $data['results'] = $this->dashboard_model->get_slots_by_date($filterDate);
+            $data['results'] = $this->Dashboard_model->get_slots_by_date($filterDate);
             
             $data['contents'] = 'results_page';
             $data['filterDate'] = $filterDate;
@@ -40,7 +40,7 @@ class dashboard extends CI_Controller {
 
     public function get_details_by_type_voiture() {
         $type_voiture = $this->input->post('type_voiture');
-        $details = $this->dashboard_model->get_details_by_type_voiture($type_voiture);
+        $details = $this->Dashboard_model->get_details_by_type_voiture($type_voiture);
         
         $output = '<table class="table">';
         $output .= '<thead><tr><th>Réservation ID</th><th>Voiture</th><th>Service</th><th>Prix</th><th>Date début</th><th>Date fin</th></tr></thead>';
@@ -64,7 +64,7 @@ class dashboard extends CI_Controller {
     public function details_by_type_voiture($type_voiture) {
         // $data['title'] = 'Détails du type de voiture';
         $data['type_voiture'] = urldecode($type_voiture);
-        $data['details'] = $this->dashboard_model->get_details_by_type_voiture($data['type_voiture']);
+        $data['details'] = $this->Dashboard_model->get_details_by_type_voiture($data['type_voiture']);
  
         $data['contents'] = 'details';
         $this->load->view('templates/template-admin', $data);
@@ -73,11 +73,11 @@ class dashboard extends CI_Controller {
     public function get_chiffre_affaire_par_voiture() {
         $type_voiture = $this->input->post('type_voiture');
         $data['type_voiture'] = $type_voiture;
-        $data['chiffre_affaire_par_voiture'] = $this->dashboard_model->get_chiffre_affaire_par_voiture($type_voiture);
+        $data['chiffre_affaire_par_voiture'] = $this->Dashboard_model->get_chiffre_affaire_par_voiture($type_voiture);
 
         $data['contents'] = 'chiffre_affaire_par_voiture';
-        $data['stats'] = $this->dashboard_model->get_montant_total_chiffre_affaire();
-        $data['stats_by_type'] = $this->dashboard_model->get_montant_chiffre_affaire_par_type_voiture();
+        $data['stats'] = $this->Dashboard_model->get_montant_total_chiffre_affaire();
+        $data['stats_by_type'] = $this->Dashboard_model->get_montant_chiffre_affaire_par_type_voiture();
         $this->load->view('templates/template-admin', $data);
     }
 }

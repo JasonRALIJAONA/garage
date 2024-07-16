@@ -10,7 +10,7 @@
                     </div>
                   <?php } ?>
                   <h4 class="card-title">Insertion services</h4>
-                  <?php echo form_open('service/create', array('class'=>'forms-sample')); ?>
+                  <?php echo form_open('Service/create', array('class'=>'forms-sample')); ?>
                     <div class="form-group">
                       <label for="exampleInputUsername1">Type</label>
                       <input type="text" class="form-control" placeholder="Type" name="type" <?php if($update){echo ("value = '".$service['type']."'");} ?>>

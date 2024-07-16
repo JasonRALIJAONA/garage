@@ -90,7 +90,7 @@
                     var index = elements[0]._index; // Index de l'élément dans le dataset sélectionné
                     var typeVoiture = barData.labels[index]; // Récupérer le label à l'index sélectionné
 
-                    window.location.href = "<?php echo base_url('dashboard/details_by_type_voiture/'); ?>" + encodeURIComponent(typeVoiture);
+                    window.location.href = "<?php echo base_url('Dashboard/details_by_type_voiture/'); ?>" + encodeURIComponent(typeVoiture);
                 }
             }
         }

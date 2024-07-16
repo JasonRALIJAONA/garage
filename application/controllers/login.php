@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class login extends CI_Controller {
+class Login extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         // Chargez le modèle nécessaire
-        $this->load->model('client_model');
-        $this->load->model('service_model');
+        $this->load->model('Client_model');
+        $this->load->model('Service_model');
 
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -15,7 +15,7 @@ class login extends CI_Controller {
 
     public function index() {
         // Récupérer la liste des types de voiture depuis le modèle
-        $data['types_voiture'] = $this->client_model->get_types_voiture();
+        $data['types_voiture'] = $this->Client_model->get_types_voiture();
     
         // Charger la vue du formulaire de login avec les données
         $this->load->view('login', $data);
@@ -31,13 +31,13 @@ class login extends CI_Controller {
         if (!empty($car_number) && !empty($car_type_name)) {
             try {
                 // Appeler la méthode du modèle pour vérifier et inscrire le client si nécessaire
-                $client_id = $this->client_model->login($car_number, $car_type_name);
+                $client_id = $this->Client_model->login($car_number, $car_type_name);
     
                 if ($client_id !== NULL) {
                     // Rediriger vers une autre page après la connexion réussie
                     $this->session->set_userdata('client_id', $client_id);
                     $data['contents'] = 'accueil';
-                    $data['services'] = $this->service_model->get_all();
+                    $data['services'] = $this->Service_model->get_all();
                     $this->load->view('templates/template', $data);
                     return; // Sortie de la méthode après chargement de la vue
                 } else {
@@ -54,7 +54,7 @@ class login extends CI_Controller {
         }
     
         // Charger la vue de connexion avec les données nécessaires
-        $data['types_voiture'] = $this->client_model->get_types_voiture();
+        $data['types_voiture'] = $this->Client_model->get_types_voiture();
         $this->load->view('login', $data);
     }
     

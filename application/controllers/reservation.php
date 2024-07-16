@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class reservation extends CI_Controller {
+class Reservation extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // Chargez le modèle nécessaire
-        $this->load->model('client_model');
-        $this->load->model('service_model');
+        $this->load->model('Client_model');
+        $this->load->model('Service_model');
 
-        $this->load->model('reservation_model');
+        $this->load->model('Reservation_model');
 
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -17,13 +17,13 @@ class reservation extends CI_Controller {
 
     public function index() {
         // Charger les rendez-vous depuis le modèle
-        $reservations = $this->reservation_model->get_all_reservations();
+        $reservations = $this->Reservation_model->get_all_reservations();
 
         // Préparer les données pour la vue
         // $data['title'] = 'Calendrier des Rendez-vous';
         
-        $data['clients'] = $this->client_model->get_all();
-        $data['services'] = $this->service_model->get_all();
+        $data['clients'] = $this->Client_model->get_all();
+        $data['services'] = $this->Service_model->get_all();
         
         $data['contents'] = 'calendrier';
         $data['reservations'] = $reservations;
@@ -39,14 +39,14 @@ class reservation extends CI_Controller {
         // Vérifier si les champs requis sont remplis
         if (!empty($client_id) && !empty($service_id) && !empty($date_debut)) {
             // Appeler la méthode du modèle pour prendre le rendez-vous
-            $reservation_id = $this->reservation_model->prendre_rendez_vous($client_id, $service_id, $date_debut);
+            $reservation_id = $this->Reservation_model->prendre_rendez_vous($client_id, $service_id, $date_debut);
     
             if (is_string($reservation_id)) {
                 // Afficher un message d'erreur
                 // Préparer les données pour la vue d'accueil
-                $data['clients'] = $this->client_model->get_all();
-                $data['services'] = $this->service_model->get_all();
-                $data['reservations'] = $this->reservation_model->get_all_reservations();
+                $data['clients'] = $this->Client_model->get_all();
+                $data['services'] = $this->Service_model->get_all();
+                $data['reservations'] = $this->Reservation_model->get_all_reservations();
                 $data['contents'] = 'accueil';
 
                 $data['error_message'] = $reservation_id;
@@ -57,9 +57,9 @@ class reservation extends CI_Controller {
                 $pdf_url = base_url('reservation/view_pdf/' . $reservation_id);
     
                 // Préparer les données pour la vue d'accueil
-                $data['clients'] = $this->client_model->get_all();
-                $data['services'] = $this->service_model->get_all();
-                $data['reservations'] = $this->reservation_model->get_all_reservations();
+                $data['clients'] = $this->Client_model->get_all();
+                $data['services'] = $this->Service_model->get_all();
+                $data['reservations'] = $this->Reservation_model->get_all_reservations();
                 $data['contents'] = 'accueil';
                 
                 // Charger la vue avec les données nécessaires
@@ -77,7 +77,7 @@ class reservation extends CI_Controller {
         }
     
         // Charger la vue avec les données nécessaires
-        $data['services'] = $this->service_model->get_all();
+        $data['services'] = $this->Service_model->get_all();
         $data['contents'] = 'view_pdf';
         $this->load->view('templates/template', $data);
     }
@@ -85,7 +85,7 @@ class reservation extends CI_Controller {
     
     
     private function generate_pdf($reservation_id) {
-        $reservation = $this->reservation_model->get_reservation_by_id($reservation_id);
+        $reservation = $this->Reservation_model->get_reservation_by_id($reservation_id);
     
         // Initialiser FPDF
         $pdf = new FPDF();
@@ -157,8 +157,8 @@ class reservation extends CI_Controller {
     
     
     public function get_reservations() {
-        $this->load->model('reservation_model');
-        $reservations = $this->reservation_model->get_all_reservations();
+        $this->load->model('Reservation_model');
+        $reservations = $this->Reservation_model->get_all_reservations();
     
         $events = array();
     
@@ -179,7 +179,7 @@ class reservation extends CI_Controller {
         $date_debut = $this->input->post('date_debut');
 
         // Calculer la date de fin en fonction de la durée du service
-        $service = $this->service_model->get_by_id($service_id);
+        $service = $this->Service_model->get_by_id($service_id);
         $duration = $service['duree']; // Durée du service au format '01:00:00'
         
         // Convertir la durée au format attendu par DateInterval (PnDTnHnMnS)

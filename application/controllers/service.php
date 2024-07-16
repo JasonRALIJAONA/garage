@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class service extends CI_Controller{
+class Service extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('service_model');
+        $this->load->model('Service_model');
         $this->load->helper('form');
     }
 
     public function list(){
         $data=array();
 
-        $data['services']=$this->service_model->get_all();
+        $data['services']=$this->Service_model->get_all();
         $data['contents'] = 'list-services';
 
         $this->load->view('templates/template-admin', $data);
@@ -21,7 +21,7 @@ class service extends CI_Controller{
     public function view($id){
         $data=array();
 
-        $data['service']=$this->service_model->get_by_id($id);
+        $data['service']=$this->Service_model->get_by_id($id);
         $data['contents'] = 'service';
 
         $this->load->view('templates/template', $data);
@@ -57,13 +57,13 @@ class service extends CI_Controller{
         }
 
         if ($id != null) {
-            $this->service_model->update($id, $info);
-            redirect('service/list');
+            $this->Service_model->update($id, $info);
+            redirect('Service/list');
             return;
         }
 
-        $this->service_model->create($info);
-        redirect('service/list');
+        $this->Service_model->create($info);
+        redirect('Service/list');
     }
 
     public function form($id = null){
@@ -74,13 +74,13 @@ class service extends CI_Controller{
             return;
         }
         $data['update'] = true;
-        $data['service'] = $this->service_model->get_by_id($id);
+        $data['service'] = $this->Service_model->get_by_id($id);
         $this->load->view('templates/template-admin', $data);
     }
 
     public function delete($id){
-        $this->service_model->delete($id);
-        redirect('service/list');
+        $this->Service_model->delete($id);
+        redirect('Service/list');
     }
 
     public function update(){
@@ -108,8 +108,8 @@ class service extends CI_Controller{
             $this->load->view('templates/template', $data);
             return;
         }
-        $this->service_model->update($id, $info);
-        redirect('service/list');
+        $this->Service_model->update($id, $info);
+        redirect('Service/list');
     }
 }
 ?>

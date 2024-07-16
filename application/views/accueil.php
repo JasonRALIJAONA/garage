@@ -18,7 +18,7 @@
     				<div class="row no-gutters">
 	  					<div class="col-md-4 d-flex align-items-center">
                 
-                <form class="request-form ftco-animate bg-primary" method="post" action="<?php echo site_url('reservation/process_reservation'); ?>">
+                <form class="request-form ftco-animate bg-primary" method="post" action="<?php echo site_url('Reservation/process_reservation'); ?>">
                   <h2 style="margin-bottom: 20px;">Prenez votre rendez-vous</h2>
 				  
 				  <div class="d-flex">  

@@ -3,7 +3,7 @@
     <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Insertion date de paiement</h4>
-                  <?php echo form_open('devis/update', array('class' => 'forms-sample')); ?>
+                  <?php echo form_open('Devis/update', array('class' => 'forms-sample')); ?>
                     <div class="form-group">
                       <label for="exampleInputUsername1">Numero de voiture</label>
                       <input type="text" class="form-control" placeholder="Numero de voiture" readonly value="<?php echo $devis->numero_voiture ?>">
