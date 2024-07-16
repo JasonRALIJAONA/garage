@@ -17,6 +17,11 @@ class reservation_model extends CI_Model{
         return $query->row();
     }
 
+    public function get_all_reservations() {
+        $query = $this->db->get('g_reservations'); // Assurez-vous que le nom de votre table est correct
+        return $query->result();
+    }
+    
     public function get_all_services() {
         $query = $this->db->get('g_services');
         return $query->result_array();
