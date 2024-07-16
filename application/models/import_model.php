@@ -81,7 +81,7 @@ class import_model extends CI_Model{
                     if (count($dateParts) == 3) {
                         $formattedDate = $dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0];
                         $date_debut = $formattedDate . ' ' . $data[3];
-                        $id_last=$this->reservation_model->prendre_rendez_vous($dict_client[$data[0]], $dict_service[$data[4]], $date_debut);
+                        $id_last=$this->reservation_model->prendre_rendez_vous($dict_client[$data[0]], $dict_service[$data[4]], $date_debut , $data[5]);
 
                         if($data[6] != null){
                             $date_paiement_parts= explode('/', $data[6]);
