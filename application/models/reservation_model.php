@@ -17,11 +17,20 @@ class reservation_model extends CI_Model{
         return $query->row();
     }
 
+    public function get_all_reservation() {
+        $this->db->select('r.*, s.type AS service_type, s.prix, c.numero_voiture , r.date_paiement');
+        $this->db->from('g_reservations r');
+        $this->db->join('g_clients c', 'r.id_client = c.id');
+        $this->db->join('g_services s', 'r.id_service = s.id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_all_reservations() {
         $query = $this->db->get('g_reservations'); // Assurez-vous que le nom de votre table est correct
         return $query->result();
     }
-    
+
     public function get_all_services() {
         $query = $this->db->get('g_services');
         return $query->result_array();
