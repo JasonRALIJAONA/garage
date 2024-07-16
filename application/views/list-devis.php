@@ -27,7 +27,7 @@
                                         <td><?php echo $dev['date_fin'];?></td>
                                         <td><?php if($dev['date_paiement'] == null){echo "Pas encore definis";}else{echo $dev['date_paiement'];}?></td>
                                         <td><?php echo $dev['prix'];?></td>
-                                        <td><h3><a href=<?php echo "form/".$dev['id'];?>><i class="mdi mdi-border-color"></i></a></h3></td>
+                                        <td><h3><a href=<?php echo "form/".$dev['id'];?>><i class="mdi mdi-table-edit"></i></a></h3></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
