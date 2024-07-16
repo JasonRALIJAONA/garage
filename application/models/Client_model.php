@@ -12,6 +12,16 @@ class client_model extends CI_Model {
         return $query->result();
     }
 
+    public function dict(){
+        $tab=$this->get_all();
+        $data=array();
+        for ($i=0; $i < count($tab); $i++) { 
+            $data[$tab[$i]->numero_voiture]=$tab[$i]->id;
+        }
+
+        return $data;
+    }
+
     public function prendre_rendez_vous($client_id, $service_id, $date_debut) {
         // Appeler la procédure stockée
         $query = $this->db->query("CALL PrendreRendezVous(?, ?, ?)", array($client_id, $service_id, $date_debut));
