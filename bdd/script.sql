@@ -109,9 +109,8 @@ CREATE TABLE g_admins (
 INSERT INTO g_admins (pseudo, mdp) VALUES
 ('admin', sha1('admin'));
 
-CREATE TABLE `configurations` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `config_key` VARCHAR(50) NOT NULL,
-    `config_value` VARCHAR(255) NOT NULL
+CREATE TABLE `configuration` (
+    date_reference DATE
 );
-INSERT INTO `configurations` (`config_key`, `config_value`) VALUES ('reference_date', '2024-07-10');
+
+INSERT INTO `configuration` (date_reference) VALUES ('2024-01-01');
