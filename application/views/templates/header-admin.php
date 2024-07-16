@@ -271,7 +271,7 @@
           </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?php echo base_url('dashboard')?>">
             <span class="menu-title">Slots</span>  
           </a>
           </li>
