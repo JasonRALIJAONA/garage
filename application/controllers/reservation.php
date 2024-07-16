@@ -43,9 +43,32 @@ class reservation extends CI_Controller {
     
             if (is_string($reservation_id)) {
                 // Afficher un message d'erreur
+                // Préparer les données pour la vue d'accueil
+                $data['clients'] = $this->client_model->get_all();
+                $data['services'] = $this->service_model->get_all();
+                $data['reservations'] = $this->reservation_model->get_all_reservations();
+                $data['contents'] = 'accueil';
+
                 $data['error_message'] = $reservation_id;
+                $this->load->view('templates/template', $data);
+                return;
             } else {
-                $this->generate_pdf($reservation_id);
+                // Générer le PDF et obtenir l'URL du fichier
+                $pdf_url = base_url('reservation/view_pdf/' . $reservation_id);
+    
+                // Préparer les données pour la vue d'accueil
+                $data['clients'] = $this->client_model->get_all();
+                $data['services'] = $this->service_model->get_all();
+                $data['reservations'] = $this->reservation_model->get_all_reservations();
+                $data['contents'] = 'accueil';
+                
+                // Charger la vue avec les données nécessaires
+                $this->load->view('templates/template', $data);
+    
+                // Ajouter un script JavaScript pour ouvrir le PDF dans un nouvel onglet
+                echo '<script type="text/javascript">
+                    window.open("' . $pdf_url . '", "_blank");
+                </script>';
                 return;
             }
         } else {
@@ -55,11 +78,12 @@ class reservation extends CI_Controller {
     
         // Charger la vue avec les données nécessaires
         $data['services'] = $this->service_model->get_all();
-        $data['contents'] = 'accueil';
-
+        $data['contents'] = 'view_pdf';
         $this->load->view('templates/template', $data);
     }
-
+    
+    
+    
     private function generate_pdf($reservation_id) {
         $reservation = $this->reservation_model->get_reservation_by_id($reservation_id);
     
@@ -118,10 +142,19 @@ class reservation extends CI_Controller {
         }
         $pdfFilePath = $uploadDir . '/reservation_' . $reservation->id . '.pdf';
         $pdf->Output($pdfFilePath, 'F');
-    
-        // Afficher le PDF
-        $pdf->Output();
+        
+        return $pdfFilePath;
     }
+
+    public function view_pdf($reservation_id) {
+        $this->load->helper('url');
+    
+        $filePath = $this->generate_pdf($reservation_id);
+        
+        // Rediriger vers le fichier PDF généré
+        redirect(base_url('uploads/' . basename($filePath)));
+    }
+    
     
     public function get_reservations() {
         $this->load->model('reservation_model');
