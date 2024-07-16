@@ -245,6 +245,7 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href=<?php echo base_url("devis/list") ?>>Listes</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Date de paiement</a></li>
               </ul>
             </div>
           </li>
