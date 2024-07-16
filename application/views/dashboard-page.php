@@ -6,9 +6,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <canvas id="statChart" width="400" height="200"></canvas>
+                            <center><h3>Chiffres d'affaires total</h3></center>
                         </div>
                         <div class="col-md-6">
                             <canvas id="barChart" width="400" height="200"></canvas>
+                            <center><h3>Chiffres d'affaires par type</h3></center>
                         </div>
                     </div>
                 </div>
